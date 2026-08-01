@@ -33,12 +33,10 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 @keyframes md{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-50px) scale(1.12)}100%{transform:translate(-40px,60px) scale(.92)}}
 canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-/* পেজ */
 .page{display:none;position:relative;z-index:1;min-height:100vh}
 .page.active{display:block;animation:pgI .5s cubic-bezier(.22,1,.36,1)}
 @keyframes pgI{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-/* টোস্ট */
 .tb{position:fixed;top:20px;right:20px;z-index:99999;display:flex;flex-direction:column;gap:8px}
 .tst{padding:13px 20px;border-radius:var(--rs);font-size:13px;font-weight:500;min-width:260px;max-width:380px;display:flex;align-items:center;gap:9px;animation:tI .35s ease;box-shadow:0 10px 40px rgba(0,0,0,.5);backdrop-filter:blur(10px)}
 .tst.ok{background:linear-gradient(135deg,rgba(0,200,83,.92),rgba(0,230,118,.92));color:#000}
@@ -48,7 +46,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 @keyframes tI{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:none}}
 @keyframes tO{to{opacity:0;transform:translateX(100px)}}
 
-/* লোডিং */
 .ld{position:fixed;inset:0;z-index:999999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
 .ld.go{opacity:0;visibility:hidden}
 .ld h1{font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;letter-spacing:4px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
@@ -56,7 +53,7 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .ld-bar{width:200px;height:2px;background:var(--bg3);border-radius:2px;overflow:hidden}
 .ld-bar i{display:block;height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .2s}
 
-/* ===== অথ পেজ ===== */
+/* অথ পেজ */
 .aw{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .ab{width:100%;max-width:430px}
 .abr{text-align:center;margin-bottom:36px}
@@ -94,16 +91,11 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sb button span{font-size:11px;font-family:inherit}
 .sb button:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ===== ড্যাশবোর্ড ===== */
+/* ড্যাশবোর্ড */
 .dash{display:none;min-height:100vh;padding-bottom:80px}
 .dash.active{display:block}
 
-/* টপ হেডার */
-.dheader{
-  position:sticky;top:0;z-index:100;
-  background:rgba(8,8,15,.92);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--bdr);padding:12px 16px;
-}
+.dheader{position:sticky;top:0;z-index:100;background:rgba(8,8,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr);padding:12px 16px}
 .dh-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .dh-user{display:flex;align-items:center;gap:10px}
 .dh-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:var(--bg);flex-shrink:0}
@@ -114,49 +106,30 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .dh-btn:hover{border-color:var(--gold);color:var(--gold)}
 .dh-btn .rd{position:absolute;top:5px;right:5px;width:7px;height:7px;background:var(--red);border:2px solid var(--bg);border-radius:50%}
 
-/* ব্যালেন্স বার */
-.bal-bar{
-  background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,140,0,.04));
-  border:1px solid rgba(255,215,0,.12);border-radius:var(--r);padding:14px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+.bal-bar{background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,140,0,.04));border:1px solid rgba(255,215,0,.12);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .bal-left{display:flex;align-items:center;gap:8px}
 .bal-left i{color:var(--gold);font-size:18px}
 .bal-left .bal-amt{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:1px}
 .bal-right{display:flex;gap:8px}
-.bal-btn{
-  padding:8px 18px;border:none;border-radius:var(--rs);font-size:12px;
-  font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.3px;
-}
+.bal-btn{padding:8px 18px;border:none;border-radius:var(--rs);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.3px}
 .bal-btn.dep{background:var(--accent);color:var(--bg)}
 .bal-btn.wit{background:transparent;border:1.5px solid var(--gold);color:var(--gold)}
 .bal-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--glow)}
 
-/* প্রমো ব্যানার */
 .promo-slider{padding:12px 16px;overflow:hidden}
-.promo-track{display:flex;gap:12px;animation:pScroll 20s linear infinite}
+.promo-track{display:flex;gap:12px;animation:pSc 20s linear infinite}
 .promo-track:hover{animation-play-state:paused}
-@keyframes pScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.promo-card{
-  min-width:calc(100% - 12px);border-radius:var(--r);overflow:hidden;position:relative;height:120px;flex-shrink:0;cursor:pointer;
-}
+@keyframes pSc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.promo-card{min-width:calc(100% - 12px);border-radius:var(--r);overflow:hidden;position:relative;height:120px;flex-shrink:0;cursor:pointer}
 .promo-card img{width:100%;height:100%;object-fit:cover}
 .promo-card .po{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,15,.85),rgba(8,8,15,.3));display:flex;flex-direction:column;justify-content:center;padding:20px}
 .promo-card .po h3{font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.3}
 .promo-card .po h3 em{font-style:normal;color:var(--gold)}
 .promo-card .po p{font-size:12px;color:var(--fg2)}
 
-/* লাকি ড্র পপআপ */
-.lucky-popup{
-  margin:0 16px 12px;background:linear-gradient(135deg,#1a1528,#251a38);
-  border:1px solid rgba(255,215,0,.2);border-radius:var(--r);padding:18px;
-  position:relative;overflow:hidden;cursor:pointer;transition:all .3s;
-}
+.lucky-popup{margin:0 16px 12px;background:linear-gradient(135deg,#1a1528,#251a38);border:1px solid rgba(255,215,0,.2);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:all .3s}
 .lucky-popup:hover{border-color:rgba(255,215,0,.4);transform:translateY(-1px)}
-.lucky-popup::before{
-  content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;
-  background:radial-gradient(circle,rgba(255,215,0,.15),transparent);border-radius:50%;
-}
+.lucky-popup::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,215,0,.15),transparent);border-radius:50%}
 .lp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .lp-top h4{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
 .lp-top h4 i{color:var(--gold)}
@@ -166,73 +139,63 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .lp-progress{height:6px;background:var(--bg);border-radius:3px;overflow:hidden}
 .lp-progress i{display:block;height:100%;width:8%;background:var(--accent);border-radius:3px;transition:width .5s}
 
-/* গেম ট্যাব */
 .gtabs{display:flex;gap:0;padding:0 16px;margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .gtabs::-webkit-scrollbar{display:none}
-.gtab{
-  padding:10px 18px;white-space:nowrap;font-size:13px;font-weight:600;color:var(--fg3);
-  cursor:pointer;transition:all .3s;border:none;background:none;font-family:inherit;
-  border-bottom:2px solid transparent;flex-shrink:0;
-}
+.gtab{padding:10px 18px;white-space:nowrap;font-size:13px;font-weight:600;color:var(--fg3);cursor:pointer;transition:all .3s;border:none;background:none;font-family:inherit;border-bottom:2px solid transparent;flex-shrink:0}
 .gtab.on{color:var(--gold);border-bottom-color:var(--gold)}
 .gtab:hover{color:var(--fg)}
 
-/* গেম গ্রিড — ক্যাসিনো স্টাইল */
+/* গেম গ্রিড */
 .ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 16px}
-.gc{
-  border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .35s;
-  position:relative;background:var(--bg3);border:1px solid var(--bdr);
-}
+.gc{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .35s;position:relative;background:var(--bg3);border:1px solid var(--bdr)}
 .gc:hover{transform:translateY(-4px) scale(1.02);border-color:var(--bdr-h);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px var(--glow)}
+.gc.slots-link{position:relative}
+.gc.slots-link::after{
+  content:'\f35d';font-family:'Font Awesome 6 Free';font-weight:900;
+  position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
+  background:rgba(0,200,83,.85);color:#000;font-size:10px;
+  display:flex;align-items:center;justify-content:center;z-index:2;
+  box-shadow:0 2px 10px rgba(0,230,118,.3);
+}
 .gc-img{width:100%;aspect-ratio:1/1;overflow:hidden;position:relative}
 .gc-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gc:hover .gc-img img{transform:scale(1.1)}
-.gc-img .gc-badge{
-  position:absolute;bottom:6px;left:6px;padding:2px 8px;border-radius:10px;
-  font-size:9px;font-weight:700;backdrop-filter:blur(6px);letter-spacing:.3px;
-}
+.gc-img .gc-badge{position:absolute;bottom:6px;left:6px;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;backdrop-filter:blur(6px);letter-spacing:.3px}
 .gc-badge.hot{background:rgba(255,68,102,.85);color:#fff}
 .gc-badge.new{background:rgba(0,230,118,.85);color:#000}
 .gc-badge.top{background:rgba(255,215,0,.85);color:#000}
-.gc-name{
-  padding:8px 8px 10px;text-align:center;font-size:11px;font-weight:600;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.gc-name{padding:8px 8px 10px;text-align:center;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* স্লটস ট্যাব হেডিং নোট */
+.slots-note{
+  margin:0 16px 12px;padding:12px 16px;
+  background:linear-gradient(135deg,rgba(0,230,118,.06),rgba(0,200,255,.04));
+  border:1px solid rgba(0,230,118,.12);border-radius:var(--rs);
+  font-size:12px;color:var(--fg2);display:flex;align-items:center;gap:8px;
 }
+.slots-note i{color:var(--green);font-size:14px}
+.slots-note strong{color:var(--green)}
 
 /* বটম নেভ */
-.bnav{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  background:rgba(8,8,15,.95);backdrop-filter:blur(24px);
-  border-top:1px solid var(--bdr);display:flex;padding:6px 0 env(safe-area-inset-bottom,6px);
-}
-.bnav-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-  padding:8px 0;cursor:pointer;transition:all .3s;border:none;background:none;font-family:inherit;
-}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,15,.95);backdrop-filter:blur(24px);border-top:1px solid var(--bdr);display:flex;padding:6px 0 env(safe-area-inset-bottom,6px)}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0;cursor:pointer;transition:all .3s;border:none;background:none;font-family:inherit}
 .bnav-item i{font-size:18px;color:var(--fg3);transition:all .3s}
 .bnav-item span{font-size:10px;color:var(--fg3);font-weight:500;transition:all .3s}
 .bnav-item.on i{color:var(--gold)}
 .bnav-item.on span{color:var(--gold);font-weight:600}
 .bnav-item:hover i{color:var(--gold)}
 
-/* সেকশন ভিউ */
 .sec-view{display:none}.sec-view.active{display:block;animation:pgI .3s ease}
 .sec-title{padding:16px 16px 12px;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
 .sec-title i{color:var(--gold);font-size:14px}
 
-/* খেলাধুলা সেকশন */
+/* খেলাধুলা */
 .sport-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px 16px}
-.sp-cat{
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);
-  padding:16px 8px;text-align:center;cursor:pointer;transition:all .3s;
-}
+.sp-cat{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:16px 8px;text-align:center;cursor:pointer;transition:all .3s}
 .sp-cat:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
 .sp-cat i{font-size:24px;color:var(--gold);margin-bottom:8px;display:block}
 .sp-cat span{font-size:12px;font-weight:500;color:var(--fg2)}
-.sp-match{
-  margin:0 16px 10px;background:var(--bg3);border:1px solid var(--bdr);
-  border-radius:var(--r);padding:14px;transition:all .3s;cursor:pointer;
-}
+.sp-match{margin:0 16px 10px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;transition:all .3s;cursor:pointer}
 .sp-match:hover{border-color:var(--bdr-h)}
 .sp-match-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:11px;color:var(--fg3)}
 .sp-match-head span:last-child{color:var(--green);font-weight:600}
@@ -247,27 +210,19 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sp-od small{display:block;font-size:10px;color:var(--fg3);margin-bottom:2px}
 .sp-od strong{font-size:14px;font-weight:700;color:var(--gold)}
 
-/* প্রমোশন সেকশন */
+/* প্রমোশন */
 .promo-list{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
-.promo-item{
-  border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);cursor:pointer;transition:all .3s;
-}
+.promo-item{border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);cursor:pointer;transition:all .3s}
 .promo-item:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
 .promo-item img{width:100%;height:130px;object-fit:cover}
 .promo-item .pi-body{padding:14px;background:var(--bg3)}
 .promo-item .pi-body h4{font-size:14px;font-weight:600;margin-bottom:4px}
 .promo-item .pi-body p{font-size:12px;color:var(--fg3)}
-.promo-item .pi-body .pi-tag{
-  display:inline-block;margin-top:8px;padding:3px 10px;
-  background:rgba(255,215,0,.1);color:var(--gold);border-radius:10px;font-size:10px;font-weight:600;
-}
+.promo-item .pi-body .pi-tag{display:inline-block;margin-top:8px;padding:3px 10px;background:rgba(255,215,0,.1);color:var(--gold);border-radius:10px;font-size:10px;font-weight:600}
 
-/* পেমেন্ট সেকশন */
+/* পেমেন্ট */
 .pay-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px 16px}
-.pay-card{
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);
-  padding:20px 14px;text-align:center;cursor:pointer;transition:all .3s;
-}
+.pay-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:20px 14px;text-align:center;cursor:pointer;transition:all .3s}
 .pay-card:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
 .pay-card i{font-size:28px;color:var(--gold);margin-bottom:10px;display:block}
 .pay-card h4{font-size:14px;font-weight:600;margin-bottom:4px}
@@ -275,16 +230,9 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .pay-methods{padding:0 16px 16px}
 .pm-title{font-size:13px;font-weight:600;color:var(--fg2);margin-bottom:10px}
 .pm-list{display:flex;flex-direction:column;gap:8px}
-.pm-item{
-  display:flex;align-items:center;gap:12px;padding:14px;
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);
-  cursor:pointer;transition:all .3s;
-}
+.pm-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:all .3s}
 .pm-item:hover{border-color:var(--bdr-h)}
-.pm-item .pm-icon{
-  width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;
-}
+.pm-item .pm-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .pm-icon.bkash{background:rgba(230,82,26,.12);color:#e6521a}
 .pm-icon.nagad{background:rgba(249,100,27,.12);color:#f9641b}
 .pm-icon.rocket{background:rgba(112,54,160,.12);color:#7036a0}
@@ -294,11 +242,8 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .pm-item .pm-info p{font-size:11px;color:var(--fg3)}
 .pm-item .pm-arrow{color:var(--fg3);font-size:12px}
 
-/* আমার সেকশন */
-.profile-card{
-  margin:0 16px 16px;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,140,0,.03));
-  border:1px solid rgba(255,215,0,.12);border-radius:var(--r);padding:24px;text-align:center;
-}
+/* আমার */
+.profile-card{margin:0 16px 16px;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,140,0,.03));border:1px solid rgba(255,215,0,.12);border-radius:var(--r);padding:24px;text-align:center}
 .profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:var(--bg);margin:0 auto 12px;box-shadow:0 0 30px var(--glow)}
 .profile-card h3{font-size:18px;font-weight:700;margin-bottom:2px}
 .profile-card p{font-size:12px;color:var(--fg3);margin-bottom:16px}
@@ -307,11 +252,7 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .pst h5{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold)}
 .pst p{font-size:10px;color:var(--fg3)}
 .menu-list{padding:0 16px 16px;display:flex;flex-direction:column;gap:6px}
-.menu-item{
-  display:flex;align-items:center;gap:12px;padding:14px 16px;
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);
-  cursor:pointer;transition:all .2s;font-size:13px;font-weight:500;color:var(--fg2);
-}
+.menu-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:all .2s;font-size:13px;font-weight:500;color:var(--fg2)}
 .menu-item:hover{border-color:var(--bdr-h);color:var(--fg)}
 .menu-item i{width:20px;text-align:center;color:var(--gold);font-size:14px}
 .menu-item .mi-arrow{margin-left:auto;color:var(--fg3);font-size:11px}
@@ -339,14 +280,11 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 /* ডিপোজিট মোডাল */
 .dep-modal{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .dep-modal.show{display:flex;animation:pgI .25s ease}
-.dep-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);width:100%;max-width:420px;padding:28px;animation:shUp .35s cubic-bezier(.22,1,.36,1)}
+.dep-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);width:100%;max-width:420px;padding:28px;animation:shUp .35s cubic-bezier(.22,1,.36,1);position:relative}
 .dep-box h3{font-size:18px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .dep-box h3 i{color:var(--gold)}
 .dep-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
-.dep-amt{
-  padding:12px 8px;background:var(--bg3);border:1.5px solid var(--bdr);border-radius:var(--rs);
-  text-align:center;cursor:pointer;transition:all .2s;font-family:inherit;color:var(--fg);
-}
+.dep-amt{padding:12px 8px;background:var(--bg3);border:1.5px solid var(--bdr);border-radius:var(--rs);text-align:center;cursor:pointer;transition:all .2s;font-family:inherit;color:var(--fg)}
 .dep-amt:hover,.dep-amt.on{border-color:var(--gold);background:rgba(255,215,0,.05)}
 .dep-amt.on{color:var(--gold);font-weight:700}
 .dep-amt small{display:block;font-size:10px;color:var(--fg3);margin-bottom:2px}
@@ -359,16 +297,8 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .dep-close:hover{background:var(--red);border-color:var(--red);color:#fff}
 
 @media(min-width:500px){.ggrid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:768px){
-  .ggrid{grid-template-columns:repeat(5,1fr)}
-  .promo-card{min-width:calc(50% - 12px)}
-  .sport-cats{grid-template-columns:repeat(4,1fr)}
-  .pay-cards{grid-template-columns:repeat(4,1fr)}
-}
-@media(min-width:1024px){
-  .ggrid{grid-template-columns:repeat(6,1fr)}
-  .promo-card{min-width:calc(33.33% - 12px)}
-}
+@media(min-width:768px){.ggrid{grid-template-columns:repeat(5,1fr)}.promo-card{min-width:calc(50% - 12px)}.sport-cats{grid-template-columns:repeat(4,1fr)}.pay-cards{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){.ggrid{grid-template-columns:repeat(6,1fr)}.promo-card{min-width:calc(33.33% - 12px)}}
 </style>
 </head>
 <body>
@@ -378,7 +308,7 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 <canvas id="ptc"></canvas>
 <div class="tb" id="tbox"></div>
 
-<!-- ===== অথ পেজ ===== -->
+<!-- অথ পেজ -->
 <div class="page active" id="authPage">
   <div class="aw"><div class="ab">
     <div class="abr">
@@ -413,9 +343,8 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
   </div></div>
 </div>
 
-<!-- ===== ড্যাশবোর্ড ===== -->
+<!-- ড্যাশবোর্ড -->
 <div class="dash" id="dash">
-  <!-- হেডার -->
   <div class="dheader">
     <div class="dh-top">
       <div class="dh-user"><div class="dh-avatar" id="dAv">M</div><div class="dh-info"><h4 id="dName">User</h4><p>ID: MC-829461</p></div></div>
@@ -434,49 +363,41 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
     </div>
   </div>
 
-  <!-- ===== হোম সেকশন ===== -->
+  <!-- হোম -->
   <div class="sec-view active" id="secHome">
-    <!-- প্রমো স্লাইডার -->
     <div class="promo-slider"><div class="promo-track" id="promoTrack"></div></div>
-
-    <!-- লাকি ড্র -->
     <div class="lucky-popup" onclick="toast('লাকি ড্র শীঘ্রই শুরু হবে!','ok')">
       <div class="lp-top"><h4><i class="fas fa-gift"></i> Lucky Draw</h4><span class="lp-badge">FREE</span></div>
       <div class="lp-amount">৳ ৬,০০০ টাকা</div>
       <div class="lp-sub">২০০ গেম ফ্রি (16/200) — আপনার ID: MC-829461</div>
       <div class="lp-progress"><i></i></div>
     </div>
-
-    <!-- গেম ট্যাব -->
     <div class="gtabs" id="gTabs"></div>
-    <!-- গেম গ্রিড -->
+    <div id="slotsNote" style="display:none"></div>
     <div class="ggrid" id="gGrid"></div>
   </div>
 
-  <!-- ===== খেলাধুলা সেকশন ===== -->
+  <!-- খেলাধুলা -->
   <div class="sec-view" id="secSport">
     <div class="sec-title"><i class="fas fa-futbol"></i> খেলাধুলা</div>
     <div class="sport-cats" id="spCats"></div>
     <div id="spMatches"></div>
   </div>
 
-  <!-- ===== প্রমোশন সেকশন ===== -->
+  <!-- প্রমোশন -->
   <div class="sec-view" id="secPromo">
     <div class="sec-title"><i class="fas fa-percentage"></i> প্রমোশন</div>
     <div class="promo-list" id="promoList"></div>
   </div>
 
-  <!-- ===== পেমেন্ট সেকশন ===== -->
+  <!-- পেমেন্ট -->
   <div class="sec-view" id="secPay">
     <div class="sec-title"><i class="fas fa-wallet"></i> পেমেন্ট</div>
     <div class="pay-cards" id="payCards"></div>
-    <div class="pay-methods">
-      <div class="pm-title">পেমেন্ট মেথড</div>
-      <div class="pm-list" id="pmList"></div>
-    </div>
+    <div class="pay-methods"><div class="pm-title">পেমেন্ট মেথড</div><div class="pm-list" id="pmList"></div></div>
   </div>
 
-  <!-- ===== আমার সেকশন ===== -->
+  <!-- আমার -->
   <div class="sec-view" id="secMy">
     <div class="profile-card">
       <div class="profile-avatar" id="pAv">M</div>
@@ -491,7 +412,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
     <div class="menu-list" id="menuList"></div>
   </div>
 
-  <!-- বটম নেভ -->
   <div class="bnav" id="bNav">
     <button class="bnav-item on" onclick="swSec('Home',this)"><i class="fas fa-gamepad"></i><span>হোম</span></button>
     <button class="bnav-item" onclick="swSec('Sport',this)"><i class="fas fa-futbol"></i><span>খেলাধুলা</span></button>
@@ -511,7 +431,7 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
       <div class="gm-meta" id="gmMeta"></div>
       <p class="gm-desc" id="gmDesc"></p>
       <div class="gm-acts">
-        <button class="b1" onclick="doPlay()"><i class="fas fa-play"></i> এখনই খেলুন</button>
+        <button class="b1" id="gmPlayBtn"><i class="fas fa-play"></i> এখনই খেলুন</button>
         <button class="b2" onclick="clGM()"><i class="fas fa-heart"></i> ফেভারিট</button>
       </div>
     </div>
@@ -519,8 +439,8 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 </div>
 
 <!-- ডিপোজিট মোডাল -->
-<div class="dep-modal" id="depModal" style="position:relative">
-  <div class="dep-box" style="position:relative">
+<div class="dep-modal" id="depModal">
+  <div class="dep-box">
     <button class="dep-close" onclick="clDep()"><i class="fas fa-times"></i></button>
     <h3><i class="fas fa-plus-circle"></i> টাকা জমা করুন</h3>
     <div class="dep-amounts" id="depAmounts"></div>
@@ -530,7 +450,10 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 </div>
 
 <script>
-/* === ডেটা === */
+/* স্লটস লিংক কনস্ট্যান্ট */
+const SLOTS_URL = 'https://play.slotomania.com/slots/';
+
+/* গেম ডেটা */
 const GAMES=[
   {id:1,t:"Super Ace",c:"popular",b:"hot",img:"https://picsum.photos/seed/mc-sa1/300/300.jpg",r:4.9,p:"45.2K",d:"ক্লাসিক কার্ড স্লট গেম। পোকার স্টাইলে জিতুন বিশাল জ্যাকপট!"},
   {id:2,t:"Aviator",c:"popular",b:"hot",img:"https://picsum.photos/seed/mc-av2/300/300.jpg",r:4.8,p:"52.1K",d:"প্লেন উড়লে বাড়তে থাকে মাল্টিপ্লায়ার। সঠিক সময়ে ক্যাশআউট করুন!"},
@@ -544,7 +467,7 @@ const GAMES=[
   {id:10,t:"Crash X",c:"new",b:"hot",img:"https://picsum.photos/seed/mc-cx10/300/300.jpg",r:4.7,p:"28.9K",d:"রকেট ক্র্যাশ গেম। কত উঁচুতে যাবে? সাহস থাকলে খেলুন!"},
   {id:11,t:"Dragon Tiger",c:"new",b:"top",img:"https://picsum.photos/seed/mc-dt11/300/300.jpg",r:4.5,p:"22.1K",d:"ড্রাগন নাকি টাইগার? বেট করুন এবং জিতুন!"},
   {id:12,t:"Roma X",c:"new",b:"new",img:"https://picsum.photos/seed/mc-rx12/300/300.jpg",r:4.2,p:"13.5K",d:"রোমান সাম্রাজ্যের যুগে ফিরে যান। গ্ল্যাডিয়েটর বোনাস।"},
-  {id:13,t:"Jili Slots",c:"slots",b:"hot",img:"https://picsum.photos/seed/mc-js13/300/300.jpg",r:4.6,p:"31.4K",d:"Jili গেমিংয়ের বিখ্যাত স্লট কালেকশন।"},
+  {id:13,t:"Jili Slots",c:"slots",b:"hot",img:"https://picsum.photos/seed/mc-js13/300/300.jpg",r:4.6,p:"31.4K",d:"Jili গেমিংয়ের বিখ্যাত স্লট কালেকশন। সরাসরি খেলতে ক্লিক করুন!"},
   {id:14,t:"PG Slots",c:"slots",b:"top",img:"https://picsum.photos/seed/mc-ps14/300/300.jpg",r:4.7,p:"35.8K",d:"Pocket Games Soft এর প্রিমিয়াম স্লট গেমস।"},
   {id:15,t:"CQ9 Slots",c:"slots",b:"new",img:"https://picsum.photos/seed/mc-cq15/300/300.jpg",r:4.3,p:"18.2K",d:"CQ9 গেমিংয়ের ইনোভেটিভ স্লট টাইটেল।"},
   {id:16,t:"FC Slots",c:"slots",b:"hot",img:"https://picsum.photos/seed/mc-fc16/300/300.jpg",r:4.5,p:"24.6K",d:"Fast Casino স্লট — দ্রুত গেমপ্লে ও বড় জয়।"},
@@ -558,12 +481,10 @@ const GAMES=[
   {id:24,t:"Baccarat",c:"casino",b:"top",img:"https://picsum.photos/seed/mc-bc24/300/300.jpg",r:4.6,p:"25.3K",d:"প্লেয়ার নাকি ব্যাংকার? বিশ্বের সবচেয়ে জনপ্রিয় কার্ড গেম।"},
 ];
 
-const TABS=[
-  {k:'popular',l:'জনপ্রিয়'},{k:'new',l:'নতুন গেম'},{k:'slots',l:'স্লটস'},{k:'casino',l:'ক্যাসিনো'},{k:'mini',l:'মিনি গেম'}
-];
+const TABS=[{k:'popular',l:'জনপ্রিয়'},{k:'new',l:'নতুন গেম'},{k:'slots',l:'স্লটস গেমস'},{k:'casino',l:'ক্যাসিনো'},{k:'mini',l:'মিনি গেম'}];
 
 const PROMOS=[
-  {img:"https://picsum.photos/seed/mc-pr1/600/200.jpg",t:"নতুন ইউজার বোনাস",d:"প্রথম ডিপোজিটে ১০০% বোনাস পান — সর্বোচ্চ ৳১০,০০০!",tag:"নতুন"},
+  {img:"https://picsum.photos/seed/mc-pr1/600/200.jpg",t:"নতুন ইউজার বোনাস",d:"প্রথম ডিপোজিটে ১০০% বোনাস — সর্বোচ্চ ৳১০,০০০!",tag:"নতুন"},
   {img:"https://picsum.photos/seed/mc-pr2/600/200.jpg",t:"দৈনিক লগইন বোনাস",d:"প্রতিদিন লগইন করলেই ফ্রি বোনাস কয়েন!",tag:"দৈনিক"},
   {img:"https://picsum.photos/seed/mc-pr3/600/200.jpg",t:"রেফার অ্যান্ড আর্ন",d:"বন্ধুকে ইনভাইট করুন, প্রতি রেফারে ৳২০০!",tag:"রেফার"},
   {img:"https://picsum.photos/seed/mc-pr4/600/200.jpg",t:"VIP মেম্বারশিপ",d:"VIP লেভেল বাড়ান, এক্সক্লুসিভ রিওয়ার্ড পান!",tag:"VIP"},
@@ -578,8 +499,8 @@ const SP_CATS=[
 const MATCHES=[
   {l:"বাংলাদেশ",r:"ভারত",li:"https://picsum.photos/seed/bd-f/60/60.jpg",ri:"https://picsum.photos/seed/in-f/60/60.jpg",league:"T20 World Cup",time:"লাইভ",o1:"2.10",o2:"1.85",o3:"1.95"},
   {l:"ব্রাজিল",r:"আর্জেন্টিনা",li:"https://picsum.photos/seed/br-f/60/60.jpg",ri:"https://picsum.photos/seed/ar-f/60/60.jpg",league:"Copa America",time:"আজ ২১:০০",o1:"2.45",o2:"2.80",o3:"3.10"},
-  {l:"ম্যানচেস্টার সিটি",r:"লিভারপুল",li:"https://picsum.photos/seed/mc-f/60/60.jpg",ri:"https://picsum.photos/seed/lp-f/60/60.jpg",league:"Premier League",time:"আগামীকাল",o1:"1.95",o2:"3.20",o3:"3.50"},
-  {l:"রিয়াল মাদ্রিদ",r:"বার্সেলোনা",li:"https://picsum.photos/seed/rm-f/60/60.jpg",ri:"https://picsum.photos/seed/bc-f/60/60.jpg",league:"La Liga",time:"শুক্রবার",o1:"2.15",o2:"3.00",o3:"3.30"},
+  {l:"ম্যানচেস্টার সিটি",r:"লিভারপুল",li:"https://picsum.photos/seed/mci-f/60/60.jpg",ri:"https://picsum.photos/seed/liv-f/60/60.jpg",league:"Premier League",time:"আগামীকাল",o1:"1.95",o2:"3.20",o3:"3.50"},
+  {l:"রিয়াল মাদ্রিদ",r:"বার্সেলোনা",li:"https://picsum.photos/seed/rm-f/60/60.jpg",ri:"https://picsum.photos/seed/bca-f/60/60.jpg",league:"La Liga",time:"শুক্রবার",o1:"2.15",o2:"3.00",o3:"3.30"},
 ];
 
 const PM=[
@@ -602,21 +523,21 @@ const MENU=[
   {icon:"fa-sign-out-alt",l:"লগআউট",dng:true},
 ];
 
-/* === পার্টিকেল === */
+/* পার্টিকেল */
 const cv=document.getElementById('ptc'),cx=cv.getContext('2d');let pts=[];
 function rC(){cv.width=innerWidth;cv.height=innerHeight}rC();addEventListener('resize',rC);
-class P{constructor(){this.rs()}rs(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.s=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.o=Math.random()*.35+.06;this.c=Math.random()>.5?'255,215,0':'0,230,118'}up(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width||this.y<0||this.y>cv.height)this.rs()}dr(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(${this.c},${this.o})`;cx.fill()}}
-for(let i=0;i<50;i++)pts.push(new P());
+class Pt{constructor(){this.rs()}rs(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.s=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.o=Math.random()*.35+.06;this.c=Math.random()>.5?'255,215,0':'0,230,118'}up(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width||this.y<0||this.y>cv.height)this.rs()}dr(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(${this.c},${this.o})`;cx.fill()}}
+for(let i=0;i<50;i++)pts.push(new Pt());
 function aP(){cx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.up();p.dr()});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle=`rgba(255,215,0,${.03*(1-d/100)})`;cx.lineWidth=.4;cx.stroke()}}requestAnimationFrame(aP)}
 aP();
 
-/* === লোডিং === */
+/* লোডিং */
 let lp=0;const li=setInterval(()=>{lp+=Math.random()*20+5;if(lp>=100){lp=100;clearInterval(li)}document.getElementById('lbar').style.width=lp+'%';if(lp>=100)setTimeout(()=>document.getElementById('loader').classList.add('go'),400)},160);
 
-/* === টোস্ট === */
+/* টোস্ট */
 function toast(m,t='in'){const c=document.getElementById('tbox'),el=document.createElement('div');el.className='tst '+t;const ic={ok:'fa-check-circle',er:'fa-exclamation-circle',in:'fa-info-circle'};el.innerHTML=`<i class="fas ${ic[t]}"></i><span>${m}</span>`;c.appendChild(el);setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),250)},3000)}
 
-/* === অথ === */
+/* অথ */
 let cu=null;
 function swA(t){document.querySelectorAll('.at button').forEach((b,i)=>b.classList.toggle('on',(t==='login'&&i===0)||(t==='reg'&&i===1)));document.getElementById('lF').classList.toggle('on',t==='login');document.getElementById('rF').classList.toggle('on',t==='reg')}
 function spB(id,s){const b=document.getElementById(id);b.querySelector('.bt').style.display=s?'none':'inline';b.querySelector('.sp').style.display=s?'block':'none';b.disabled=s}
@@ -635,52 +556,58 @@ function enterD(){
 }
 function doLogout(){cu=null;document.getElementById('dash').classList.remove('active');document.getElementById('authPage').classList.add('active');document.getElementById('lE').value='';document.getElementById('lP').value='';toast('লগআউট সফল','in')}
 
-/* === সেকশন সুইচ === */
-function swSec(s,btn){
-  document.querySelectorAll('.sec-view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('sec'+s).classList.add('active');
-  document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('on'));
-  if(btn)btn.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+/* সেকশন সুইচ */
+function swSec(s,btn){document.querySelectorAll('.sec-view').forEach(v=>v.classList.remove('active'));document.getElementById('sec'+s).classList.add('active');document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');window.scrollTo({top:0,behavior:'smooth'})}
 
-/* === ড্যাশবোর্ড বিল্ড === */
+/* ড্যাশবোর্ড বিল্ড */
 function buildD(){buildPromo();buildTabs();renderG('popular');buildSport();buildPromoList();buildPay();buildMenu()}
 
-// প্রমো স্লাইডার
-function buildPromo(){
-  const t=document.getElementById('promoTrack');
-  const items=PROMOS.map(p=>`<div class="promo-card" onclick="swSec('Promo',document.querySelectorAll('.bnav-item')[2])"><img src="${p.img}" alt=""><div class="po"><h3>${p.t}</h3><p>${p.d}</p></div></div>`).join('');
-  t.innerHTML=items+items;// ডুপ্লিকেট করে ইনফিনিট স্ক্রল
-}
+function buildPromo(){const t=document.getElementById('promoTrack');const items=PROMOS.map(p=>`<div class="promo-card" onclick="swSec('Promo',document.querySelectorAll('.bnav-item')[2])"><img src="${p.img}" alt=""><div class="po"><h3>${p.t}</h3><p>${p.d}</p></div></div>`).join('');t.innerHTML=items+items}
 
-// গেম ট্যাব
 let aTab='popular';
-function buildTabs(){
-  document.getElementById('gTabs').innerHTML=TABS.map(t=>`<button class="gtab ${t.k==='popular'?'on':''}" onclick="fTab('${t.k}',this)">${t.l}</button>`).join('');
-}
+function buildTabs(){document.getElementById('gTabs').innerHTML=TABS.map(t=>`<button class="gtab ${t.k==='popular'?'on':''}" onclick="fTab('${t.k}',this)">${t.l}</button>`).join('')}
 function fTab(k,btn){aTab=k;document.querySelectorAll('.gtab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderG(k)}
 
-// গেম গ্রিড
+/* গেম গ্রিড রেন্ডার — স্লটস গেমগুলোতে সরাসরি লিংক */
 function renderG(cat){
   const list=GAMES.filter(g=>g.c===cat);
   const bc={hot:'hot',new:'new',top:'top'};
   const bt={hot:'HOT',new:'NEW',top:'TOP'};
-  document.getElementById('gGrid').innerHTML=list.map(g=>`<div class="gc" onclick="opGM(${g.id})"><div class="gc-img"><img src="${g.img}" alt="${g.t}" loading="lazy">${g.b?`<span class="gc-badge ${bc[g.b]}">${bt[g.b]}</span>`:''}</div><div class="gc-name">${g.t}</div></div>`).join('');
+  const isSlots = cat === 'slots';
+  const noteEl = document.getElementById('slotsNote');
+
+  /* স্লটস ট্যাবে নোট দেখানো */
+  if(isSlots){
+    noteEl.style.display='block';
+    noteEl.innerHTML='<div class="slots-note"><i class="fas fa-external-link-alt"></i><span>ক্লিক করলেই <strong>Slotomania</strong> এ সরাসরি চলে যাবেন — খেলা শুরু!</span></div>';
+  } else {
+    noteEl.style.display='none';
+    noteEl.innerHTML='';
+  }
+
+  document.getElementById('gGrid').innerHTML=list.map(g=>{
+    /* স্লটস ক্যাটাগরির গেমে slots-link ক্লাস যোগ */
+    const slotClass = isSlots ? 'slots-link' : '';
+    const clickAction = isSlots
+      ? `onclick="window.open('${SLOTS_URL}','_blank')"`
+      : `onclick="opGM(${g.id})"`;
+    return `<div class="gc ${slotClass}" ${clickAction}>
+      <div class="gc-img">
+        <img src="${g.img}" alt="${g.t}" loading="lazy">
+        ${g.b?`<span class="gc-badge ${bc[g.b]}">${bt[g.b]}</span>`:''}
+      </div>
+      <div class="gc-name">${g.t}</div>
+    </div>`;
+  }).join('');
 }
 
-// খেলাধুলা
 function buildSport(){
   document.getElementById('spCats').innerHTML=SP_CATS.map(c=>`<div class="sp-cat" onclick="toast('${c.l} সেকশন শীঘ্রই আসছে','in')"><i class="fas ${c.icon}"></i><span>${c.l}</span></div>`).join('');
   document.getElementById('spMatches').innerHTML=MATCHES.map(m=>`<div class="sp-match"><div class="sp-match-head"><span>${m.league}</span><span>${m.time}</span></div><div class="sp-teams"><div class="sp-team"><img src="${m.li}" alt=""><h5>${m.l}</h5></div><div class="sp-vs">VS</div><div class="sp-team"><img src="${m.ri}" alt=""><h5>${m.r}</h5></div></div><div class="sp-odds"><div class="sp-od" onclick="toast('${m.l} এ বেট প্লেস হয়েছে','ok')"><small>${m.l}</small><strong>${m.o1}</strong></div><div class="sp-od" onclick="toast('ড্রতে বেট প্লেস হয়েছে','ok')"><small>ড্র</small><strong>${m.o3}</strong></div><div class="sp-od" onclick="toast('${m.r} এ বেট প্লেস হয়েছে','ok')"><small>${m.r}</small><strong>${m.o2}</strong></div></div></div>`).join('');
 }
 
-// প্রমোশন লিস্ট
-function buildPromoList(){
-  document.getElementById('promoList').innerHTML=PROMOS.map(p=>`<div class="promo-item" onclick="toast('অফার ক্লেইম করা হয়েছে!','ok')"><img src="${p.img}" alt=""><div class="pi-body"><h4>${p.t}</h4><p>${p.d}</p><span class="pi-tag">${p.tag}</span></div></div>`).join('');
-}
+function buildPromoList(){document.getElementById('promoList').innerHTML=PROMOS.map(p=>`<div class="promo-item" onclick="toast('অফার ক্লেইম করা হয়েছে!','ok')"><img src="${p.img}" alt=""><div class="pi-body"><h4>${p.t}</h4><p>${p.d}</p><span class="pi-tag">${p.tag}</span></div></div>`).join('')}
 
-// পেমেন্ট
 function buildPay(){
   document.getElementById('payCards').innerHTML=[
     {icon:'fa-plus-circle',t:'টাকা জমা',d:'দ্রুত জমা করুন',act:'openDep()'},
@@ -691,12 +618,9 @@ function buildPay(){
   document.getElementById('pmList').innerHTML=PM.map(p=>`<div class="pm-item" onclick="openDep()"><div class="pm-icon ${p.cls}"><i class="fas ${p.icon}"></i></div><div class="pm-info"><h5>${p.name}</h5><p>${p.num}</p></div><i class="fas fa-chevron-right pm-arrow"></i></div>`).join('');
 }
 
-// মেনু
-function buildMenu(){
-  document.getElementById('menuList').innerHTML=MENU.map(m=>`<div class="menu-item ${m.dng?'dng':''}" onclick="${m.dng?'doLogout()':`toast('${m.l} শীঘ্রই আসছে','in')`}"><i class="fas ${m.icon}"></i>${m.l}<i class="fas fa-chevron-right mi-arrow"></i></div>`).join('');
-}
+function buildMenu(){document.getElementById('menuList').innerHTML=MENU.map(m=>`<div class="menu-item ${m.dng?'dng':''}" onclick="${m.dng?'doLogout()':`toast('${m.l} শীঘ্রই আসছে','in')`}"><i class="fas ${m.icon}"></i>${m.l}<i class="fas fa-chevron-right mi-arrow"></i></div>`).join('')}
 
-/* === গেম মোডাল === */
+/* গেম মোডাল (শুধু নন-স্লটস গেমের জন্য) */
 let cGid=null;
 function opGM(id){
   cGid=id;const g=GAMES.find(x=>x.id===id);if(!g)return;
@@ -704,14 +628,22 @@ function opGM(id){
   document.getElementById('gmTitle').textContent=g.t;
   document.getElementById('gmMeta').innerHTML=`<span><i class="fas fa-star"></i>${g.r}</span><span><i class="fas fa-users"></i>${g.p}</span><span><i class="fas fa-gamepad"></i>${TABS.find(t=>t.k===g.c)?.l||g.c}</span>`;
   document.getElementById('gmDesc').textContent=g.d;
+  /* মোডালের প্লে বাটন — স্লটস হলে লিংক, নাহলে সাধারণ */
+  const playBtn = document.getElementById('gmPlayBtn');
+  if(g.c === 'slots'){
+    playBtn.onclick = function(){ window.open(SLOTS_URL, '_blank'); clGM(); };
+    playBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Slotomania এ খেলুন';
+  } else {
+    playBtn.onclick = function(){ const gm=GAMES.find(x=>x.id===cGid); clGM(); toast(`"${gm.t}" লোড হচ্ছে...`,'ok'); };
+    playBtn.innerHTML = '<i class="fas fa-play"></i> এখনই খেলুন';
+  }
   document.getElementById('gModal').classList.add('show');document.body.style.overflow='hidden';
 }
 function clGM(){document.getElementById('gModal').classList.remove('show');document.body.style.overflow=''}
 document.getElementById('gModal').addEventListener('click',e=>{if(e.target===document.getElementById('gModal'))clGM()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){clGM();clDep()}});
-function doPlay(){const g=GAMES.find(x=>x.id===cGid);clGM();toast(`"${g.t}" লোড হচ্ছে...`,'ok')}
 
-/* === ডিপোজিট মোডাল === */
+/* ডিপোজিট মোডাল */
 const DEP_AMTS=[{l:'১০০',v:100},{l:'৫০০',v:500},{l:'১,০০০',v:1000},{l:'২,০০০',v:2000},{l:'৫,০০০',v:5000},{l:'১০,০০০',v:10000}];
 function openDep(){
   document.getElementById('depModal').classList.add('show');document.body.style.overflow='hidden';
@@ -721,11 +653,7 @@ function openDep(){
 function clDep(){document.getElementById('depModal').classList.remove('show');document.body.style.overflow=''}
 document.getElementById('depModal').addEventListener('click',e=>{if(e.target===document.getElementById('depModal'))clDep()});
 function selDep(btn,v){document.querySelectorAll('.dep-amt').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('depInput').value=v}
-function doDep(){
-  const v=parseInt(document.getElementById('depInput').value)||0;
-  if(v<100){toast('ন্যূনতম জমা ৳১০০','er');return}
-  clDep();toast(`৳${v.toLocaleString('bn-BD')} সফলভাবে জমা হয়েছে!`,'ok');
-}
+function doDep(){const v=parseInt(document.getElementById('depInput').value)||0;if(v<100){toast('ন্যূনতম জমা ৳১০০','er');return}clDep();toast(`৳${v.toLocaleString('bn-BD')} সফলভাবে জমা হয়েছে!`,'ok')}
 
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){document.querySelectorAll('.m').forEach(m=>m.style.animation='none');pts=[]}
 </script>
