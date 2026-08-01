@@ -27,15 +27,11 @@ input{font-family:inherit;border:none;outline:none}
 .orb1{width:420px;height:420px;background:#3a2b8c;top:-120px;left:-120px}
 .orb2{width:380px;height:380px;background:#b32b4d;bottom:-140px;right:-100px;animation-delay:-6s}
 .orb3{width:300px;height:300px;background:#8a6d1f;top:45%;left:55%;animation-delay:-11s;opacity:.3}
-@keyframes floatOrb{
-  0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(50px,-40px) scale(1.15)}
-  66%{transform:translate(-40px,30px) scale(.92)}
-}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.15)}66%{transform:translate(-40px,30px) scale(.92)}}
 .grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:44px 44px;animation:gridMove 22s linear infinite}
 @keyframes gridMove{from{background-position:0 0,0 0}to{background-position:0 44px,44px 0}}
 
-/* ===== screens & transitions ===== */
+/* ===== screens ===== */
 .screen{display:none;min-height:100vh;padding-bottom:84px;animation:screenIn .45s cubic-bezier(.22,1,.36,1)}
 .screen.active{display:block}
 @keyframes screenIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -46,7 +42,7 @@ input{font-family:inherit;border:none;outline:none}
 .logo .cash{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:logoGlow 2.6s ease-in-out infinite}
 @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(255,170,40,.45))}50%{filter:drop-shadow(0 0 18px rgba(255,170,40,.9))}}
 
-/* ===== auth (login/register with background scene) ===== */
+/* ===== auth ===== */
 .auth{display:none;position:relative;min-height:100vh;overflow:hidden;padding:0}
 .auth.active{display:block}
 .auth-bg{position:absolute;inset:0;z-index:0}
@@ -75,7 +71,7 @@ input{font-family:inherit;border:none;outline:none}
 .badge-new{display:inline-block;background:linear-gradient(135deg,#ff4d5a,#ff9f1c);font-size:10px;font-weight:900;color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
-/* ===== login scene animations ===== */
+/* ===== login scene ===== */
 .tw1,.tw2,.tw3,.tw4,.tw5{animation:twinkle 2.6s ease-in-out infinite}
 .tw2{animation-delay:.5s}.tw3{animation-delay:1s}.tw4{animation-delay:1.5s}.tw5{animation-delay:2s}
 @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
@@ -90,21 +86,75 @@ input{font-family:inherit;border:none;outline:none}
 .ringRot{transform-box:fill-box;transform-origin:center;animation:ringSpin 16s linear infinite}
 @keyframes ringSpin{to{transform:rotate(360deg)}}
 
-/* ===== header ===== */
+/* ===== header (app) ===== */
 header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:10px;animation:fadeDown .5s both}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
 .h-bal{display:flex;align-items:center;gap:6px;background:rgba(10,15,28,.9);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:800;color:var(--gold);transition:.3s}
 .h-bal:hover{transform:scale(1.05)}
 .h-btn{background:var(--card2);color:var(--txt);border-radius:10px;padding:8px 14px;font-size:13px;border:1px solid var(--line);transition:.2s}
 .h-btn:hover{background:#202c52;transform:translateY(-1px)}
+.h-bell{position:relative;font-size:17px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;transition:.2s}
+.h-bell:hover{transform:scale(1.08)}
+.h-bell::after{content:'';position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red)}
+.h-avatar{width:36px;height:36px;border-radius:50%;background:var(--grad-gold);color:#2a1a00;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid rgba(255,255,255,.3);flex-shrink:0;transition:.2s}
+.h-avatar:hover{transform:scale(1.1);box-shadow:0 0 16px rgba(255,170,40,.7)}
 
-/* ===== banner ===== */
-.banner{margin:16px 14px 4px;border-radius:18px;padding:20px;background:linear-gradient(120deg,#1c2a5e,#3a1650 55%,#6b1d3f);border:1px solid rgba(140,120,255,.25);display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;overflow:hidden;animation:fadeUp .6s both}
-.banner::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);animation:shine 3.2s infinite}
+/* ===== banner carousel ===== */
+.carousel{position:relative;margin:14px 14px 4px;border-radius:18px;overflow:hidden;height:150px;border:1px solid rgba(140,120,255,.3);box-shadow:var(--shadow)}
+.car-track{display:flex;height:100%;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.c-slide{min-width:100%;height:100%;display:flex;align-items:center;padding:20px;position:relative;overflow:hidden;gap:14px}
+.c-slide::before{content:'';position:absolute;inset:0;background:radial-gradient(240px 120px at 85% 20%,rgba(255,255,255,.18),transparent 70%)}
+.c-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.13) 50%,transparent 70%);animation:shine 3.4s infinite}
 @keyframes shine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
-.banner h3{font-size:17px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
-.banner p{font-size:12px;color:#d5daf0;margin-top:5px;opacity:.9}
-.badge{background:var(--grad-gold);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:900;color:#2a1a00;flex-shrink:0;box-shadow:0 6px 18px rgba(255,170,40,.5);animation:pulse 2s infinite}
+.c-slide .c-txt{position:relative;z-index:2;flex:1}
+.c-slide h3{font-size:19px;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+.c-slide p{font-size:12px;color:#dfe4f5;margin-top:6px;line-height:1.6;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.c-slide .c-icon{font-size:54px;z-index:2;animation:gFloat 3s ease-in-out infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+@keyframes gFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-5deg)}}
+.c-slide.c1{background:linear-gradient(120deg,#1c2a5e,#3a1650 55%,#6b1d3f)}
+.c-slide.c2{background:linear-gradient(120deg,#0e3b2e,#065f46 55%,#0e7490)}
+.c-slide.c3{background:linear-gradient(120deg,#4c1d95,#6d28d9 50%,#be185d)}
+.c-dots{position:absolute;bottom:10px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:6px}
+.c-dot{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.35);transition:.3s}
+.c-dot.on{width:22px;background:var(--gold)}
+
+/* ===== marquee ===== */
+.marquee{margin:10px 14px;background:rgba(246,196,83,.07);border:1px solid rgba(246,196,83,.25);border-radius:12px;overflow:hidden;display:flex;align-items:center;padding:8px 0}
+.m-label{background:var(--grad-gold);color:#2a1a00;font-weight:900;font-size:11px;padding:6px 12px;border-radius:9px;margin-left:8px;flex-shrink:0;box-shadow:0 4px 12px rgba(255,170,40,.4)}
+.m-track{flex:1;overflow:hidden;padding-left:12px;white-space:nowrap}
+.m-inner{display:inline-block;padding-left:100%;animation:mq 20s linear infinite}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.m-inner span{color:var(--gold);font-weight:700}
+.m-inner em{color:var(--mut);font-style:normal;margin:0 14px}
+
+/* ===== quick actions ===== */
+.quick{display:flex;gap:8px;margin:12px 14px;overflow-x:auto;padding-bottom:3px;scrollbar-width:none}
+.quick::-webkit-scrollbar{display:none}
+.q-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 15px;transition:.2s}
+.q-item:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.q-item .qi{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.q-item small{font-size:11px;font-weight:700;color:var(--mut)}
+.q-item:nth-child(1) .qi{background:rgba(46,204,113,.18)}
+.q-item:nth-child(2) .qi{background:rgba(255,77,90,.18)}
+.q-item:nth-child(3) .qi{background:rgba(155,92,246,.18)}
+.q-item:nth-child(4) .qi{background:rgba(246,196,83,.18)}
+.q-item:nth-child(5) .qi{background:rgba(34,211,238,.18)}
+
+/* ===== jackpot ===== */
+.jackpot{margin:12px 14px;border-radius:16px;background:linear-gradient(120deg,#3a1650,#1c2a5e);border:1px solid rgba(255,215,110,.35);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+.jackpot::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,215,110,.15);filter:blur(30px)}
+.j-label{font-size:12px;color:#cfd6ea;display:flex;align-items:center;gap:6px}
+.j-amount{font-size:22px;font-weight:900;color:var(--gold);font-family:monospace;text-shadow:0 0 18px rgba(255,170,40,.7);animation:jpGlow 1.6s ease-in-out infinite}
+@keyframes jpGlow{0%,100%{text-shadow:0 0 10px rgba(255,170,40,.5)}50%{text-shadow:0 0 26px rgba(255,170,40,1)}}
+
+/* ===== vip progress ===== */
+.vip{margin:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);padding:13px 15px}
+.vip-top{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.vip-top b{color:var(--gold)}
+.vip-top small{color:var(--mut)}
+.vip-bar{height:9px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:9px;overflow:hidden;position:relative}
+.vip-fill{height:100%;width:68%;border-radius:99px;background:var(--grad-gold);box-shadow:0 0 14px rgba(255,170,40,.7);animation:vipFill 1.4s ease both}
+@keyframes vipFill{from{width:0}to{width:68%}}
 
 /* ===== period card ===== */
 .period{margin:14px;border-radius:20px;background:linear-gradient(180deg,rgba(26,35,64,.95),rgba(14,20,38,.95));border:1px solid rgba(120,140,220,.3);padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;animation:fadeUp .7s both}
@@ -142,6 +192,41 @@ header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.85);backdrop-fi
 .bet-btn:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 14px 34px rgba(255,170,40,.55)}
 .bet-btn:active{transform:scale(.97)}
 
+/* ===== tabs ===== */
+.tabs{display:flex;gap:8px;margin:16px 14px 4px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;background:var(--card);border:1px solid var(--line);color:var(--mut);padding:9px 18px;border-radius:999px;font-size:13px;font-weight:800;transition:.2s}
+.tab:hover{border-color:var(--gold);color:var(--txt)}
+.tab.on{background:var(--grad-gold);color:#2a1a00;border-color:transparent;box-shadow:0 6px 18px rgba(255,170,40,.4)}
+
+/* ===== game lobby grid ===== */
+.lobby-title{margin:18px 14px 2px;display:flex;align-items:center;gap:8px;font-size:16px;font-weight:900}
+.lobby-title .lt{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 14px;margin-top:12px}
+.g-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s;animation:fadeUp .5s both;cursor:pointer}
+.g-card:hover{transform:translateY(-4px);border-color:rgba(246,196,83,.5);box-shadow:0 14px 30px rgba(0,0,0,.5)}
+.g-card:active{transform:scale(.96)}
+.thumb{position:relative;height:108px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.thumb::before{content:'';position:absolute;inset:0;background:radial-gradient(130px 75px at 50% 28%,rgba(255,255,255,.28),transparent 72%)}
+.thumb .g-icon{font-size:52px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45));animation:gFloat 3.6s ease-in-out infinite;z-index:1}
+.g-badge{position:absolute;top:8px;left:8px;z-index:2;font-size:9px;font-weight:900;padding:3px 8px;border-radius:7px;color:#fff;letter-spacing:.6px}
+.g-badge.hot{background:linear-gradient(135deg,#ff4d5a,#ff9f1c);animation:pulse 1.5s infinite}
+.g-badge.live{background:linear-gradient(135deg,#2ecc71,#0e7490);animation:liveBlink 1.3s infinite}
+@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.55}}
+.g-badge.new{background:linear-gradient(135deg,#9b5cf6,#4c1d95)}
+.g-provider{position:absolute;bottom:6px;left:8px;right:8px;z-index:2;font-size:9px;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.7);text-align:right;font-weight:700;letter-spacing:.3px}
+.g-info{padding:10px 12px 12px}
+.g-info b{font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-meta{display:flex;justify-content:space-between;align-items:center;margin-top:7px}
+.g-meta span{font-size:10px;color:var(--mut);display:flex;align-items:center;gap:3px}
+.play-btn{background:var(--grad-gold);color:#2a1a00;font-size:10px;font-weight:900;padding:5px 13px;border-radius:999px;box-shadow:0 4px 12px rgba(255,170,40,.35);transition:.2s}
+.g-card:hover .play-btn{transform:scale(1.08)}
+
+/* ===== search ===== */
+.search{margin:14px 14px 2px;display:flex;align-items:center;gap:8px;background:rgba(10,15,28,.9);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.search input{flex:1;background:none;color:var(--txt);font-size:14px}
+.search span{font-size:16px}
+
 /* ===== cards ===== */
 .card{margin:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);padding:16px;backdrop-filter:blur(10px);animation:fadeUp .6s both;transition:.25s}
 .card:hover{border-color:rgba(246,196,83,.35)}
@@ -156,19 +241,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.85);backdrop-fi
 .hist .ball{width:36px;height:36px;font-size:14px;animation:ballPop .4s both}
 .hist .ball:nth-child(2){animation-delay:.05s}.hist .ball:nth-child(3){animation-delay:.1s}.hist .ball:nth-child(4){animation-delay:.15s}.hist .ball:nth-child(5){animation-delay:.2s}.hist .ball:nth-child(6){animation-delay:.25s}.hist .ball:nth-child(7){animation-delay:.3s}.hist .ball:nth-child(8){animation-delay:.35s}.hist .ball:nth-child(9){animation-delay:.4s}.hist .ball:nth-child(10){animation-delay:.45s}
 
-/* ===== game grid ===== */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.game{position:relative;border-radius:16px;padding:18px 16px;border:1px solid var(--line);text-align:left;background:var(--card);transition:.25s;overflow:hidden}
-.game::before{content:'';position:absolute;inset:0;background:radial-gradient(300px 120px at 50% -20%,rgba(246,196,83,.18),transparent);opacity:0;transition:.3s}
-.game:hover{transform:translateY(-4px);border-color:rgba(246,196,83,.5);box-shadow:0 14px 30px rgba(0,0,0,.45)}
-.game:hover::before{opacity:1}
-.game:active{transform:scale(.96)}
-.game .ic{font-size:32px;display:inline-block;transition:.3s}
-.game:hover .ic{transform:scale(1.25) rotate(-8deg)}
-.game b{display:block;margin-top:9px;font-size:14px}
-.game small{color:var(--mut);font-size:11px}
-.game.hot::after{content:'HOT';position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ff4d5a,#ff9f1c);font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px;animation:pulse 1.6s infinite}
-
 /* ===== nav ===== */
 nav{position:fixed;bottom:0;left:0;right:0;display:none;background:rgba(10,15,28,.96);border-top:1px solid var(--line);z-index:60;backdrop-filter:blur(12px);padding-bottom:env(safe-area-inset-bottom)}
 nav button{flex:1;background:none;color:var(--mut);padding:9px 0 12px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.2s}
@@ -178,27 +250,28 @@ nav button.on{color:var(--gold)}
 nav button.on .i{transform:translateY(-3px) scale(1.15);filter:drop-shadow(0 4px 8px rgba(246,196,83,.5))}
 nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;border-radius:0 0 6px 6px;background:var(--grad-gold);animation:fadeUp .3s both}
 
-/* ===== modal ===== */
+/* ===== modals ===== */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;backdrop-filter:blur(4px)}
 .modal-bg.show{display:flex;animation:fadeIn .25s both}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .modal{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;width:100%;max-width:340px;text-align:center;animation:modalIn .35s cubic-bezier(.34,1.56,.64,1)}
 @keyframes modalIn{0%{opacity:0;transform:scale(.7) translateY(30px)}100%{opacity:1;transform:none}}
+.modal h3{font-size:18px;margin:12px 0}
+.modal p{color:var(--mut);font-size:13px;line-height:1.8;margin-bottom:18px}
+.promo-big{font-size:56px;animation:bounceIn .6s both}
+.promo-amt{font-size:30px;font-weight:900;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin:6px 0 2px}
 
 /* ===== aviator ===== */
 #avCanvas{width:100%;height:260px;background:rgba(8,12,24,.9);border:1px solid var(--line);border-radius:14px;display:block}
 .av-mult-big{font-size:36px;font-weight:900;font-family:monospace;transition:.1s}
 
-/* ===== toast ===== */
+/* ===== toast & confetti ===== */
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-120px);background:rgba(26,34,64,.97);border:1px solid var(--gold);color:#fff;padding:12px 20px;border-radius:14px;font-size:14px;z-index:200;transition:.35s cubic-bezier(.34,1.56,.64,1);opacity:0;max-width:92vw;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.5);font-weight:700}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-/* ===== confetti ===== */
 #confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
 .cf{position:absolute;top:-20px;animation:cfFall linear forwards}
 @keyframes cfFall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
 
-/* ===== misc ===== */
 .tx-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;gap:10px;animation:fadeUp .3s both}
 .tx-row small{color:var(--mut)}
 .gold-txt{color:var(--gold)}
@@ -216,91 +289,33 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
 
 <!-- ============ LOGIN ============ -->
 <div class="screen auth active" id="s-login">
-  <!-- ব্যাকগ্রাউন্ড ছবি (SVG দৃশ্য) — নিজের ছবি দিতে চাইলে নিচের <svg> ব্লকের বদলে <img class="scene" src="আপনার-ছবির-URL"> বসান -->
   <div class="auth-bg">
     <svg class="scene" viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#070b1c"/>
-          <stop offset=".5" stop-color="#1a1145"/>
-          <stop offset="1" stop-color="#3f0f2e"/>
+          <stop offset="0" stop-color="#070b1c"/><stop offset=".5" stop-color="#1a1145"/><stop offset="1" stop-color="#3f0f2e"/>
         </linearGradient>
-        <radialGradient id="glowP">
-          <stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/>
-          <stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="glowG">
-          <stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/>
-          <stop offset="1" stop-color="#ffd76e" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="coinG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#ffe9a8"/>
-          <stop offset=".5" stop-color="#f6c453"/>
-          <stop offset="1" stop-color="#d99a1b"/>
-        </linearGradient>
+        <radialGradient id="glowP"><stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/><stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/></radialGradient>
+        <radialGradient id="glowG"><stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/><stop offset="1" stop-color="#ffd76e" stop-opacity="0"/></radialGradient>
+        <linearGradient id="coinG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#f6c453"/><stop offset="1" stop-color="#d99a1b"/></linearGradient>
       </defs>
       <rect width="800" height="1200" fill="url(#sky)"/>
       <circle cx="160" cy="220" r="280" fill="url(#glowP)"/>
       <circle cx="660" cy="400" r="240" fill="url(#glowG)"/>
       <g fill="#fff">
-        <circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/>
-        <circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/>
-        <circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/>
-        <circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/>
-        <circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/>
+        <circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/><circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/><circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/><circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/><circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/>
       </g>
-      <g transform="translate(150,390)"><g class="coin c1">
-        <circle cx="0" cy="0" r="36" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.5"/>
-        <circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/>
-        <text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(655,450)"><g class="coin c2">
-        <circle cx="0" cy="0" r="28" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/>
-        <circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/>
-        <text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(115,720)"><g class="coin c3">
-        <circle cx="0" cy="0" r="24" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/>
-        <circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/>
-        <text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(712,780)"><g class="coin c4">
-        <circle cx="0" cy="0" r="32" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.4"/>
-        <circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/>
-        <text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(556,620)"><g class="cardA">
-        <rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
-        <text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text>
-        <text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text>
-      </g></g>
-      <g transform="translate(130,770)"><g class="cardB">
-        <rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
-        <text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text>
-        <text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text>
-      </g></g>
-      <g transform="translate(662,862)"><g class="dice">
-        <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
-        <circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/>
-      </g></g>
-      <g transform="translate(205,880)"><g class="dice">
-        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
-        <circle cx="0" cy="0" r="4.5" fill="#22263b"/>
-      </g></g>
+      <g transform="translate(150,390)"><g class="coin c1"><circle cx="0" cy="0" r="36" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.5"/><circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/><text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(655,450)"><g class="coin c2"><circle cx="0" cy="0" r="28" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/><circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/><text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(115,720)"><g class="coin c3"><circle cx="0" cy="0" r="24" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/><circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/><text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(712,780)"><g class="coin c4"><circle cx="0" cy="0" r="32" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.4"/><circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/><text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(556,620)"><g class="cardA"><rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/><text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text><text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text></g></g>
+      <g transform="translate(130,770)"><g class="cardB"><rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/><text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text><text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text></g></g>
+      <g transform="translate(662,862)"><g class="dice"><rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/><circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/></g></g>
+      <g transform="translate(205,880)"><g class="dice"><rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/><circle cx="0" cy="0" r="4.5" fill="#22263b"/></g></g>
       <circle cx="400" cy="300" r="165" fill="none" stroke="#9b5cf6" stroke-width="2.4" opacity=".45" stroke-dasharray="10 16" class="ringRot"/>
       <path d="M0 1200 L0 985 h55 v35 h40 v-60 h60 v60 h50 v-25 h55 v25 h45 v-80 h60 v80 h50 v-45 h60 v45 h40 v-65 h55 v65 h50 v-30 h55 v30 h45 v-95 h60 v95 h50 v-50 h55 v50 h40 v-70 h60 v70 h55 v-40 h60 v40 h30 V1200 Z" fill="#0a0d1e" opacity=".95"/>
-      <g fill="#f6c453" opacity=".5">
-        <rect x="110" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="128" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="320" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="338" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="525" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="543" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="735" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="753" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="430" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="615" y="1010" width="8" height="8" rx="1.5"/>
-      </g>
+      <g fill="#f6c453" opacity=".5"><rect x="110" y="1010" width="8" height="8" rx="1.5"/><rect x="128" y="1010" width="8" height="8" rx="1.5"/><rect x="320" y="1010" width="8" height="8" rx="1.5"/><rect x="338" y="1010" width="8" height="8" rx="1.5"/><rect x="525" y="985" width="8" height="8" rx="1.5"/><rect x="543" y="985" width="8" height="8" rx="1.5"/><rect x="735" y="985" width="8" height="8" rx="1.5"/><rect x="753" y="985" width="8" height="8" rx="1.5"/><rect x="430" y="1010" width="8" height="8" rx="1.5"/><rect x="615" y="1010" width="8" height="8" rx="1.5"/></g>
     </svg>
     <div class="auth-shade"></div>
   </div>
@@ -323,87 +338,25 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
   <div class="auth-bg">
     <svg class="scene" viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#070b1c"/>
-          <stop offset=".5" stop-color="#1a1145"/>
-          <stop offset="1" stop-color="#3f0f2e"/>
-        </linearGradient>
-        <radialGradient id="glowP2">
-          <stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/>
-          <stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="glowG2">
-          <stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/>
-          <stop offset="1" stop-color="#ffd76e" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="coinG2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#ffe9a8"/>
-          <stop offset=".5" stop-color="#f6c453"/>
-          <stop offset="1" stop-color="#d99a1b"/>
-        </linearGradient>
+        <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070b1c"/><stop offset=".5" stop-color="#1a1145"/><stop offset="1" stop-color="#3f0f2e"/></linearGradient>
+        <radialGradient id="glowP2"><stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/><stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/></radialGradient>
+        <radialGradient id="glowG2"><stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/><stop offset="1" stop-color="#ffd76e" stop-opacity="0"/></radialGradient>
+        <linearGradient id="coinG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#f6c453"/><stop offset="1" stop-color="#d99a1b"/></linearGradient>
       </defs>
       <rect width="800" height="1200" fill="url(#sky2)"/>
-      <circle cx="160" cy="220" r="280" fill="url(#glowP2)"/>
-      <circle cx="660" cy="400" r="240" fill="url(#glowG2)"/>
-      <g fill="#fff">
-        <circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/>
-        <circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/>
-        <circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/>
-        <circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/>
-        <circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/>
-      </g>
-      <g transform="translate(150,390)"><g class="coin c1">
-        <circle cx="0" cy="0" r="36" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.5"/>
-        <circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/>
-        <text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(655,450)"><g class="coin c2">
-        <circle cx="0" cy="0" r="28" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/>
-        <circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/>
-        <text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(115,720)"><g class="coin c3">
-        <circle cx="0" cy="0" r="24" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/>
-        <circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/>
-        <text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(712,780)"><g class="coin c4">
-        <circle cx="0" cy="0" r="32" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.4"/>
-        <circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/>
-        <text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
-      </g></g>
-      <g transform="translate(556,620)"><g class="cardA">
-        <rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
-        <text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text>
-        <text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text>
-      </g></g>
-      <g transform="translate(130,770)"><g class="cardB">
-        <rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
-        <text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text>
-        <text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text>
-      </g></g>
-      <g transform="translate(662,862)"><g class="dice">
-        <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
-        <circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/>
-      </g></g>
-      <g transform="translate(205,880)"><g class="dice">
-        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
-        <circle cx="0" cy="0" r="4.5" fill="#22263b"/>
-      </g></g>
+      <circle cx="160" cy="220" r="280" fill="url(#glowP2)"/><circle cx="660" cy="400" r="240" fill="url(#glowG2)"/>
+      <g fill="#fff"><circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/><circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/><circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/><circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/><circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/></g>
+      <g transform="translate(150,390)"><g class="coin c1"><circle cx="0" cy="0" r="36" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.5"/><circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/><text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(655,450)"><g class="coin c2"><circle cx="0" cy="0" r="28" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/><circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/><text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(115,720)"><g class="coin c3"><circle cx="0" cy="0" r="24" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/><circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/><text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(712,780)"><g class="coin c4"><circle cx="0" cy="0" r="32" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.4"/><circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/><text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text></g></g>
+      <g transform="translate(556,620)"><g class="cardA"><rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/><text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text><text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text></g></g>
+      <g transform="translate(130,770)"><g class="cardB"><rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/><text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text><text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text></g></g>
+      <g transform="translate(662,862)"><g class="dice"><rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/><circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/></g></g>
+      <g transform="translate(205,880)"><g class="dice"><rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/><circle cx="0" cy="0" r="4.5" fill="#22263b"/></g></g>
       <circle cx="400" cy="300" r="165" fill="none" stroke="#9b5cf6" stroke-width="2.4" opacity=".45" stroke-dasharray="10 16" class="ringRot"/>
       <path d="M0 1200 L0 985 h55 v35 h40 v-60 h60 v60 h50 v-25 h55 v25 h45 v-80 h60 v80 h50 v-45 h60 v45 h40 v-65 h55 v65 h50 v-30 h55 v30 h45 v-95 h60 v95 h50 v-50 h55 v50 h40 v-70 h60 v70 h55 v-40 h60 v40 h30 V1200 Z" fill="#0a0d1e" opacity=".95"/>
-      <g fill="#f6c453" opacity=".5">
-        <rect x="110" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="128" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="320" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="338" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="525" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="543" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="735" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="753" y="985" width="8" height="8" rx="1.5"/>
-        <rect x="430" y="1010" width="8" height="8" rx="1.5"/>
-        <rect x="615" y="1010" width="8" height="8" rx="1.5"/>
-      </g>
+      <g fill="#f6c453" opacity=".5"><rect x="110" y="1010" width="8" height="8" rx="1.5"/><rect x="128" y="1010" width="8" height="8" rx="1.5"/><rect x="320" y="1010" width="8" height="8" rx="1.5"/><rect x="338" y="1010" width="8" height="8" rx="1.5"/><rect x="525" y="985" width="8" height="8" rx="1.5"/><rect x="543" y="985" width="8" height="8" rx="1.5"/><rect x="735" y="985" width="8" height="8" rx="1.5"/><rect x="753" y="985" width="8" height="8" rx="1.5"/><rect x="430" y="1010" width="8" height="8" rx="1.5"/><rect x="615" y="1010" width="8" height="8" rx="1.5"/></g>
     </svg>
     <div class="auth-shade"></div>
   </div>
@@ -424,31 +377,80 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
   </div>
 </div>
 
-<!-- ============ HOME ============ -->
+<!-- ============ HOME (রিয়েল-লুক লবি) ============ -->
 <div class="screen" id="s-home">
   <header>
     <div class="logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
     <div style="flex:1"></div>
+    <button class="h-bell" onclick="modal('📢 নোটিশ','দৈনিক বোনাস ১০০% পর্যন্ত! প্রতিদিন ১২টা থেকে ভোর ৫টা পর্যন্ত ডাবল বোনাস।')">🔔</button>
     <div class="h-bal">৳<span id="bal-top">0</span></div>
-    <button class="h-btn" onclick="logout()">লগআউট</button>
+    <div class="h-avatar" id="h-avatar" onclick="navGo(document.querySelectorAll('nav button')[3],'s-profile')">U</div>
   </header>
 
-  <div class="banner">
-    <div>
-      <h3>স্বাগতম, <span id="greet-user">গেমার</span> 👋</h3>
-      <p>প্রতিদিন খেলুন, জিতে নিন — নতুন একাউন্টে ১০০০ টাকা বোনাস!</p>
+  <!-- ব্যানার কারোসেল -->
+  <div class="carousel">
+    <div class="car-track" id="carTrack">
+      <div class="c-slide c1">
+        <div class="c-txt"><h3>🎁 স্বাগতম বোনাস</h3><p>নতুন একাউন্টে ৳১০০০ বোনাস<br>+ প্রথম ডিপোজিটে ১০০% পর্যন্ত!</p></div>
+        <div class="c-icon">🚀</div>
+      </div>
+      <div class="c-slide c2">
+        <div class="c-txt"><h3>✈️ Aviator</h3><p>মাল্টিপ্লায়ার ৫০০০x পর্যন্ত<br>সময়মতো ক্যাশ আউট করুন!</p></div>
+        <div class="c-icon">✈️</div>
+      </div>
+      <div class="c-slide c3">
+        <div class="c-txt"><h3>💎 মেগা জ্যাকপট</h3><p>প্রতিদিন ৩ জন ভাগ্যবান<br>জ্যাকপট জিতছেন!</p></div>
+        <div class="c-icon">💰</div>
+      </div>
     </div>
-    <div class="badge">VIP</div>
+    <div class="c-dots">
+      <div class="c-dot on"></div><div class="c-dot"></div><div class="c-dot"></div>
+    </div>
   </div>
 
+  <!-- মার্কি টিকার -->
+  <div class="marquee">
+    <div class="m-label">🏆 জয়</div>
+    <div class="m-track"><div class="m-inner">
+      <span>রহিম</span> Aviator-এ ৳৮৫,০০০ জিতলেন <em>•</em>
+      <span>সুমাইয়া</span> WinGo-তে ৳১২,৫০০ জিতলেন <em>•</em>
+      <span>করিম</span> Slot-এ ৳৪৫,২০০ জিতলেন <em>•</em>
+      <span>নুসরাত</span> Live Casino-তে ৳২৩,৭৫০ জিতলেন <em>•</em>
+      <span>তানভীর</span> Cricket-এ ৳৬০,০০০ জিতলেন <em>•</em>
+      <span>আয়েশা</span> WinGo-তে ৳৯,৯০০ জিতলেন <em>•</em>
+      <span>শাকিল</span> Aviator-এ ৳১,২০,০০০ জিতলেন <em>•</em>
+      🟢 <span>২,৩৪১ জন</span> এখন অনলাইনে <em>•</em>
+    </div></div>
+  </div>
+
+  <!-- কুইক অ্যাকশন -->
+  <div class="quick">
+    <button class="q-item" onclick="navGo(document.querySelectorAll('nav button')[2],'s-wallet')"><span class="qi">💳</span><small>জমা</small></button>
+    <button class="q-item" onclick="navGo(document.querySelectorAll('nav button')[2],'s-wallet')"><span class="qi">🏧</span><small>উত্তোলন</small></button>
+    <button class="q-item" onclick="refer()"><span class="qi">👥</span><small>রেফার</small></button>
+    <button class="q-item" onclick="modal('👑 ভিআইপি ক্লাব','ভিআইপি লেভেল ৫ এ পৌঁছালে পার্সোনাল ম্যানেজার, উচ্চ উত্তোলন সীমা এবং এক্সক্লুসিভ বোনাস পাবেন!')"><span class="qi">👑</span><small>ভিআইপি</small></button>
+    <button class="q-item" onclick="modal('🎧 সহায়তা','২৪/৭ লাইভ চ্যাট ও হোয়াটসঅ্যাপ সাপোর্ট — গড় রেসপন্স ৩০ সেকেন্ড।')"><span class="qi">🎧</span><small>সহায়তা</small></button>
+  </div>
+
+  <!-- জ্যাকপট -->
+  <div class="jackpot">
+    <div class="j-label">💰 মেগা জ্যাকপট</div>
+    <div class="j-amount" id="j-amount">৳50,000,000</div>
+  </div>
+
+  <!-- ভিআইপি প্রগ্রেস -->
+  <div class="vip">
+    <div class="vip-top"><span>👑 ভিআইপি লেভেল <b id="vip-lvl">৩</b></span><small>পরের লেভেলে <b class="gold-txt">৬৮%</b></small></div>
+    <div class="vip-bar"><div class="vip-fill"></div></div>
+  </div>
+
+  <!-- পিরিয়ড গেম (WinGo) -->
   <div class="period">
-    <div class="p-head"><span>⏱ পিরিয়ড</span><span class="p-num" id="p-num">----------</span></div>
+    <div class="p-head"><span>🐠 WinGo · পিরিয়ড</span><span class="p-num" id="p-num">----------</span></div>
     <div class="timer">
       <div class="ring-wrap">
         <svg width="88" height="88">
-          <defs><linearGradient id="gradRing" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f6c453"/><stop offset="100%" stop-color="#ff7a3c"/>
-          </linearGradient></defs>
+          <defs><linearGradient id="gradRing" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f6c453"/><stop offset="100%" stop-color="#ff7a3c"/></linearGradient></defs>
           <circle class="ring-bg" cx="44" cy="44" r="38"></circle>
           <circle class="ring-fg" id="ringFg" cx="44" cy="44" r="38" stroke-dasharray="238.76" stroke-dashoffset="0"></circle>
         </svg>
@@ -476,6 +478,7 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
     <div id="my-bets"></div>
   </div>
 
+  <!-- সর্বশেষ ফলাফল -->
   <div class="card">
     <h4>🎯 সর্বশেষ ফলাফল</h4>
     <div class="result-line" id="last-res"><span style="color:var(--mut);font-size:13px">রেজাল্ট আসছে…</span></div>
@@ -486,487 +489,11 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
     <div class="hist" id="hist"></div>
   </div>
 
-  <div class="card" style="border-color:rgba(246,196,83,.3)">
-    <h4 style="color:var(--gold)">🎮 গেম লবি</h4>
-    <div class="grid" id="game-grid"></div>
-  </div>
-</div>
-
-<!-- ============ GAMES ============ -->
-<div class="screen" id="s-games">
-  <header>
-    <button class="h-btn" onclick="navGo(document.querySelectorAll('nav button')[0],'s-home')">←</button>
-    <div class="logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
-    <div style="flex:1"></div>
-    <div class="h-bal">৳<span id="bal-top2">0</span></div>
-  </header>
-  <div class="card" style="border-color:rgba(246,196,83,.3)">
-    <h4 style="color:var(--gold)">🎮 গেম লবি</h4>
-    <div class="grid" id="game-grid2"></div>
-  </div>
-</div>
-
-<!-- ============ WALLET ============ -->
-<div class="screen" id="s-wallet">
-  <header>
-    <button class="h-btn" onclick="navGo(document.querySelectorAll('nav button')[0],'s-home')">←</button>
-    <div class="logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
-  </header>
-  <div class="card" style="text-align:center;background:linear-gradient(160deg,rgba(26,35,64,.9),rgba(14,20,38,.9))">
-    <h4>মোট ব্যালেন্স</h4>
-    <div style="font-size:40px;font-weight:900;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:8px" id="wal-bal">৳0</div>
-  </div>
-  <div class="card">
-    <h4>💳 নগদ জমা</h4>
-    <div class="amt-row"><input id="dep-amt" type="number" placeholder="টাকা" inputmode="numeric"><button class="btn" style="width:auto;padding:11px 20px" onclick="deposit()">জমা করুন</button></div>
-  </div>
-  <div class="card">
-    <h4>🏧 উত্তোলন</h4>
-    <div class="amt-row"><input id="wd-amt" type="number" placeholder="টাকা" inputmode="numeric"><button class="btn" style="width:auto;padding:11px 20px;background:linear-gradient(135deg,#ff4d5a,#d9263a);box-shadow:0 8px 24px rgba(255,77,90,.35);color:#fff" onclick="withdraw()">উত্তোলন</button></div>
-  </div>
-  <div class="card"><h4>🧾 লেনদেন ইতিহাস</h4><div id="tx-list"></div></div>
-</div>
-
-<!-- ============ PROFILE ============ -->
-<div class="screen" id="s-profile">
-  <header>
-    <button class="h-btn" onclick="navGo(document.querySelectorAll('nav button')[0],'s-home')">←</button>
-    <div class="logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
-  </header>
-  <div class="card">
-    <div style="display:flex;gap:16px;align-items:center">
-      <div style="width:60px;height:60px;border-radius:50%;background:var(--grad-gold);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#2a1a00;box-shadow:0 8px 24px rgba(255,170,40,.5)" id="pf-avatar">U</div>
-      <div>
-        <div style="font-size:19px;font-weight:800" id="pf-name">-</div>
-        <div style="color:var(--mut);font-size:12px;line-height:1.7" id="pf-meta">-</div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <h4>🔒 পাসওয়ার্ড পরিবর্তন</h4>
-    <input class="inp" id="np1" type="password" placeholder="নতুন পাসওয়ার্ড">
-    <input class="inp" id="np2" type="password" placeholder="নতুন পাসওয়ার্ড নিশ্চিত">
-    <button class="btn" onclick="changePass()">আপডেট করুন</button>
-  </div>
-  <div style="padding:0 14px"><button class="btn" style="background:linear-gradient(135deg,#ff4d5a,#d9263a);box-shadow:0 8px 24px rgba(255,77,90,.35);color:#fff" onclick="logout()">লগআউট</button></div>
-</div>
-
-<!-- ============ AVIATOR ============ -->
-<div class="screen" id="s-aviator">
-  <header>
-    <button class="h-btn" onclick="navGo(document.querySelectorAll('nav button')[0],'s-home')">←</button>
-    <div style="font-weight:900;font-size:16px">✈️ Aviator</div>
-  </header>
-  <div class="card">
-    <canvas id="avCanvas"></canvas>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin:14px 0">
-      <div class="av-mult-big" id="av-mult" style="color:var(--green)">1.00x</div>
-      <div id="av-status" style="color:var(--mut);font-size:12px;text-align:right">বাজি রাখুন এবং<br>ফ্লাই শুরু করুন</div>
-    </div>
-    <div class="amt-row">
-      <input id="av-amt" type="number" value="100" min="10" inputmode="numeric">
-      <button class="chip" onclick="setAvChip(50)">৫০</button>
-      <button class="chip" onclick="setAvChip(100)">১০০</button>
-      <button class="chip" onclick="setAvChip(500)">৫০০</button>
-    </div>
-    <button class="bet-btn" id="av-btn" onclick="avAction()">✈️ ফ্লাই শুরু করুন</button>
-  </div>
-</div>
-
-<!-- ============ NAV ============ -->
-<nav id="nav">
-  <button class="on" data-s="s-home" onclick="navGo(this,'s-home')"><span class="i">🏠</span>হোম</button>
-  <button data-s="s-games" onclick="navGo(this,'s-games')"><span class="i">🎮</span>গেমস</button>
-  <button data-s="s-wallet" onclick="navGo(this,'s-wallet')"><span class="i">👛</span>ওয়ালেট</button>
-  <button data-s="s-profile" onclick="navGo(this,'s-profile')"><span class="i">👤</span>প্রোফাইল</button>
-</nav>
-
-<!-- ============ MODAL ============ -->
-<div class="modal-bg" id="m-bg" onclick="closeModal()">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div style="font-size:44px;animation:bounceIn .5s both">🎮</div>
-    <h3 style="margin:12px 0;font-size:18px" id="m-title">গেম</h3>
-    <p style="color:var(--mut);font-size:13px;margin-bottom:18px;line-height:1.8">এই গেমটি শীঘ্রই আসছে। বর্তমানে <b class="gold-txt">Aviator</b> এবং <b class="gold-txt">WinGo (পিরিয়ড)</b> সম্পূর্ণ খেলা যাবে।</p>
-    <button class="btn" onclick="closeModal()">ঠিক আছে</button>
-  </div>
-</div>
-
-<div id="toast"></div>
-
-<script>
-const $=id=>document.getElementById(id);
-const LS={get(o){try{return JSON.parse(localStorage.getItem(o));}catch(e){return null;}},set(o,v){localStorage.setItem(o,JSON.stringify(v));}};
-const KEY_USERS='megacash_users',KEY_SESSION='megacash_session';
-const users=()=>LS.get(KEY_USERS)||[];
-const saveUsers=v=>LS.set(KEY_USERS,v);
-const session=()=>localStorage.getItem(KEY_SESSION);
-const wKey=u=>'megacash_wallet_'+u,bKey=u=>'megacash_bets_'+u,tKey=u=>'megacash_tx_'+u;
-const wallet=u=>parseInt(localStorage.getItem(wKey(u))||'0',10);
-const setWallet=(u,v)=>localStorage.setItem(wKey(u),String(Math.floor(v)));
-const getBets=u=>LS.get(bKey(u))||[];
-const saveBets=(u,v)=>LS.set(bKey(u),v);
-const getTx=u=>LS.get(tKey(u))||[];
-const addTx=(u,o)=>{const t=getTx(u);t.unshift(Object.assign({time:new Date().toLocaleString('bn-BD')},o));LS.set(tKey(u),t.slice(0,60));};
-
-const NUM_COLOR={0:'violet',1:'green',2:'red',3:'green',4:'red',5:'violet',6:'red',7:'green',8:'red',9:'green'};
-const COLOR_BALL={green:'g',red:'r',violet:'v'};
-const COLOR_LABEL={green:'সবুজ',red:'লাল',violet:'বেগুনি'};
-const PSEC=60;
-let pSeq=parseInt(localStorage.getItem('megacash_pseq')||'1',10);
-let pEnd=parseInt(localStorage.getItem('megacash_pend')||'0',10);
-let pNum=localStorage.getItem('megacash_pnum')||'';
-function makePNum(){const d=new Date();return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+String(pSeq).padStart(6,'0');}
-function savePState(){localStorage.setItem('megacash_pseq',String(pSeq));localStorage.setItem('megacash_pend',String(pEnd));localStorage.setItem('megacash_pnum',pNum);}
-
-let toastT;
-function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
-
-/* ripple effect on all .btn */
-document.addEventListener('click',e=>{
-  const b=e.target.closest('.btn');
-  if(!b)return;
-  const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height);
-  const s=document.createElement('span');
-  s.className='rip';s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';
-  b.appendChild(s);setTimeout(()=>s.remove(),650);
-});
-
-function show(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  $(id).classList.add('active');window.scrollTo(0,0);
-  if(id==='s-home')renderHome();
-  if(id==='s-wallet')renderWallet();
-  if(id==='s-profile')renderProfile();
-  if(id==='s-aviator')setTimeout(avReset,80);
-}
-function navGo(btn,id){
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  show(id);
-}
-
-/* ---------- AUTH ---------- */
-function doLogin(){
-  const u=$('li-user').value.trim(),p=$('li-pass').value;
-  if(!u||!p)return toast('ইউজারনেম ও পাসওয়ার্ড দিন');
-  const user=users().find(x=>x.user===u);
-  if(!user||user.pass!==p)return toast('❌ ভুল ইউজারনেম বা পাসওয়ার্ড');
-  localStorage.setItem(KEY_SESSION,u);
-  toast('✅ সফলভাবে লগইন হয়েছে');
-  enterApp();
-}
-function doRegister(){
-  const u=$('rg-user').value.trim(),p=$('rg-pass').value,p2=$('rg-pass2').value,ph=$('rg-phone').value.trim();
-  if(u.length<4)return toast('ইউজারনেম ৪+ অক্ষরের হতে হবে');
-  if(p.length<4)return toast('পাসওয়ার্ড ৪+ অক্ষরের হতে হবে');
-  if(p!==p2)return toast('পাসওয়ার্ড দুটি মিলছে না');
-  if(!/^0?1[0-9]{9}$/.test(ph))return toast('সঠিক মোবাইল নম্বর দিন (01XXXXXXXXX)');
-  if(users().some(x=>x.user===u))return toast('এই ইউজারনেম আগে থেকেই আছে');
-  const us=users();
-  us.push({user:u,pass:p,phone:ph,ref:$('rg-ref').value.trim()||'-',reg:new Date().toLocaleDateString('bn-BD')});
-  saveUsers(us);
-  setWallet(u,1000);
-  addTx(u,{type:'bonus',amount:1000,note:'রেজিস্ট্রেশন বোনাস'});
-  localStorage.setItem(KEY_SESSION,u);
-  toast('🎁 একাউন্ট খোলা হয়েছে — ৳১০০০ বোনাস!');
-  confetti();
-  enterApp();
-}
-function logout(){localStorage.removeItem(KEY_SESSION);$('nav').style.display='none';show('s-login');}
-function enterApp(){
-  $('nav').style.display='flex';
-  document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('on',i===0));
-  renderHome();show('s-home');
-}
-
-/* ---------- CONFETTI ---------- */
-function confetti(){
-  const wrap=$('confetti-wrap');const colors=['#f6c453','#ff4d5a','#2ecc71','#9b5cf6','#ff9f1c','#4dd7ff'];
-  for(let i=0;i<70;i++){
-    const c=document.createElement('div');
-    c.className='cf';
-    const size=6+Math.random()*8;
-    c.style.cssText='left:'+(Math.random()*100)+'vw;width:'+size+'px;height:'+(size*(0.5+Math.random()))+'px;background:'+colors[i%colors.length]+';border-radius:'+(Math.random()>.5?'50%':'3px')+';animation-duration:'+(1.6+Math.random()*1.6)+'s;animation-delay:'+(Math.random()*.4)+'s;opacity:.95';
-    wrap.appendChild(c);
-    setTimeout(()=>c.remove(),3800);
-  }
-}
-
-/* ---------- HOME ---------- */
-function renderHome(){
-  const u=session();if(!u)return;
-  $('greet-user').textContent=u;
-  $('bal-top').textContent=wallet(u).toLocaleString('bn-BD');
-  renderPeriod();renderLastResult();renderHist();renderBets();
-}
-function buildNumpad(){
-  const np=$('numpad');
-  for(let i=0;i<10;i++){
-    const b=document.createElement('button');
-    b.className='num';b.textContent=String(i);
-    b.onclick=()=>pick('num',i);
-    np.appendChild(b);
-  }
-}
-function buildGrid(){
-  const games=[
-    ['✈️','Aviator','মাল্টিপ্লায়ার গেম','aviator',true],
-    ['🐠','WinGo','পিরিয়ড গেম','wingo',true],
-    ['🎰','Slot','স্লট মেশিন','',false],
-    ['🃏','Poker','পোকার টেবিল','',false],
-    ['🎡','Roulette','রুলেট','',false],
-    ['🎲','Teen Patti','থ্রি কার্ড','',false],
-    ['🏏','Cricket','ক্রিকেট বেটিং','',false],
-    ['⚽','Football','ফুটবল বেটিং','',false],
-    ['🎣','Fishing','ফিশিং গেম','',false],
-    ['💃','Live Casino','লাইভ ডিলার','',false]
-  ];
-  const mk=g=>{
-    const b=document.createElement('button');
-    b.className='game'+(g[4]?' hot':'');
-    b.innerHTML='<div class="ic">'+g[0]+'</div><b>'+g[1]+'</b><small>'+g[2]+'</small>';
-    b.onclick=()=>{
-      if(g[3]==='aviator')show('s-aviator');
-      else if(g[3]==='wingo'){show('s-home');setTimeout(()=>document.querySelector('.period').scrollIntoView({behavior:'smooth'}),120);}
-      else modal(g[1]);
-    };
-    return b;
-  };
-  const g1=$('game-grid'),g2=$('game-grid2');
-  g1.innerHTML='';g2.innerHTML='';
-  games.forEach(x=>{g1.appendChild(mk(x));g2.appendChild(mk(x));});
-}
-
-/* ---------- PERIOD GAME ---------- */
-let sel={type:null,value:null};
-function pick(type,value){
-  sel={type,value};
-  document.querySelectorAll('.pick').forEach(el=>el.classList.toggle('sel',type==='color'&&el.dataset.c===value));
-  document.querySelectorAll('.num').forEach((el,i)=>el.classList.toggle('sel',type==='num'&&i===value));
-  $('sel-label').textContent=type==='color'?COLOR_LABEL[value]+' (২x/৪.৫x)':'সংখ্যা '+value+' (৯x)';
-}
-function setChip(v){$('bet-amt').value=v;document.querySelectorAll('.chip').forEach((c,i)=>c.classList.toggle('sel',['10','50','100','500','1000'][i]===String(v)));}
-function placeBet(){
-  const u=session();if(!u)return toast('লগইন করুন');
-  if(!sel.type)return toast('রং বা সংখ্যা বাছাই করুন');
-  const amt=parseInt($('bet-amt').value,10);
-  if(!amt||amt<10)return toast('সর্বনিম্ন বাজি ৳১০');
-  if(amt>wallet(u))return toast('ব্যালেন্স অপর্যাপ্ত');
-  if(pEnd-Date.now()<3000)return toast('এই পিরিয়ডে বাজি বন্ধ — পরেরটা ধরুন');
-  setWallet(u,wallet(u)-amt);
-  const bets=getBets(u);
-  bets.push({period:pNum,type:sel.type,value:sel.value,amount:amt,settled:false});
-  saveBets(u,bets);
-  addTx(u,{type:'bet',amount:-amt,note:'বাজি · পিরিয়ড '+pNum});
-  const btn=$('betBtn');
-  btn.classList.add('win-flash');setTimeout(()=>btn.classList.remove('win-flash'),900);
-  toast('✅ বাজি রাখা হয়েছে');
-  $('bal-top').textContent=wallet(u).toLocaleString('bn-BD');
-  renderBets();
-}
-function ensurePeriod(){
-  const now=Date.now();
-  if(!pEnd||now>=pEnd){
-    if(pNum)rollResult(pNum);
-    pSeq++;pEnd=now+PSEC*1000;pNum=makePNum();savePState();
-  }
-}
-function rollResult(period){
-  const num=Math.floor(Math.random()*10),color=NUM_COLOR[num];
-  LS.set('megacash_last',{period,num,color});
-  const h=LS.get('megacash_history')||[];
-  h.unshift({period,num,color});
-  LS.set('megacash_history',h.slice(0,20));
-  let won=false;
-  users().forEach(u=>{
-    const bets=getBets(u);let ch=false;
-    bets.forEach(b=>{
-      if(!b.settled&&b.period===period){
-        b.settled=true;ch=true;
-        let mult=0;
-        if(b.type==='color'&&b.value===color)mult=color==='violet'?4.5:2;
-        if(b.type==='num'&&b.value===num)mult=9;
-        if(mult>0){const w=Math.floor(b.amount*mult);setWallet(u,wallet(u)+w);addTx(u,{type:'win',amount:w,note:'জয় · পিরিয়ড '+period});if(u===session())won=true;}
-      }
-    });
-    if(ch)saveBets(u,bets);
-  });
-  if(won){confetti();setTimeout(()=>toast('🎉 অভিনন্দন! আপনি জিতেছেন!'),600);}
-}
-function renderPeriod(){
-  $('p-num').textContent=pNum;
-  const left=Math.max(0,Math.ceil((pEnd-Date.now())/1000));
-  $('p-timer').textContent=String(left).padStart(2,'0');
-  const fg=$('ringFg');
-  fg.style.strokeDashoffset=238.76*(1-left/PSEC);
-  fg.style.stroke=left<=10?'#ff4d5a':'url(#gradRing)';
-  $('p-timer').style.color=left<=10?'#ff4d5a':'#fff';
-}
-function renderLastResult(){
-  const l=LS.get('megacash_last'),el=$('last-res');
-  if(!l||l.period===pNum){el.innerHTML='<span style="color:var(--mut);font-size:13px">রেজাল্ট আসছে…</span>';return;}
-  el.innerHTML='<div class="ball '+COLOR_BALL[l.color]+'">'+l.num+'</div><div><div style="font-weight:800;font-size:16px">'+COLOR_LABEL[l.color]+'</div><div style="color:var(--mut);font-size:12px">পিরিয়ড '+l.period+'</div></div>';
-}
-function renderHist(){
-  const h=LS.get('megacash_history')||[],el=$('hist');
-  if(!h.length){el.innerHTML='<span style="color:var(--mut);font-size:13px">এখনো কোনো রেজাল্ট নেই</span>';return;}
-  el.innerHTML=h.slice(0,10).map(x=>'<div class="ball '+COLOR_BALL[x.color]+'" title="পিরিয়ড '+x.period+'">'+x.num+'</div>').join('');
-}
-function renderBets(){
-  const u=session(),el=$('my-bets');
-  const bets=getBets(u).filter(b=>b.period===pNum);
-  if(!bets.length){el.innerHTML='';return;}
-  el.innerHTML='<div style="border-top:1px solid rgba(255,255,255,.08);margin-top:14px;padding-top:10px"><div style="font-size:12px;color:var(--mut);margin-bottom:6px">আমার বাজি (এই পিরিয়ড)</div>'+bets.map(b=>{
-    const lbl=b.type==='color'?COLOR_LABEL[b.value]:'সংখ্যা '+b.value;
-    const st=b.settled?'<span style="color:var(--mut)">সেটেলড</span>':'<span style="color:var(--gold)">● চলমান</span>';
-    return '<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">'+st+'<span>'+lbl+'</span><b class="gold-txt">৳'+b.amount+'</b></div>';
-  }).join('')+'</div>';
-}
-
-/* ---------- WALLET ---------- */
-function renderWallet(){
-  const u=session();if(!u)return;
-  $('wal-bal').textContent='৳'+wallet(u).toLocaleString('bn-BD');
-  const tx=getTx(u);
-  $('tx-list').innerHTML=tx.length?tx.map(t=>{
-    const pos=t.amount>=0;
-    return '<div class="tx-row"><span>'+t.note+'<br><small>'+t.time+'</small></span><b style="color:'+(pos?'var(--green)':'var(--red)')+';white-space:nowrap;font-size:15px">'+(pos?'+':'−')+'৳'+Math.abs(t.amount).toLocaleString('bn-BD')+'</b></div>';
-  }).join(''):'<span style="color:var(--mut);font-size:13px">কোনো লেনদেন নেই</span>';
-}
-function deposit(){
-  const u=session();const v=parseInt($('dep-amt').value,10);
-  if(!v||v<=0)return toast('সঠিক টাকা দিন');
-  setWallet(u,wallet(u)+v);
-  addTx(u,{type:'deposit',amount:v,note:'নগদ জমা'});
-  toast('✅ ৳'+v.toLocaleString('bn-BD')+' জমা হয়েছে');
-  $('dep-amt').value='';renderWallet();
-}
-function withdraw(){
-  const u=session();const v=parseInt($('wd-amt').value,10);
-  if(!v||v<=0)return toast('সঠিক টাকা দিন');
-  if(v>wallet(u))return toast('ব্যালেন্স অপর্যাপ্ত');
-  setWallet(u,wallet(u)-v);
-  addTx(u,{type:'withdraw',amount:-v,note:'উত্তোলন'});
-  toast('✅ উত্তোলনের অনুরোধ নেওয়া হয়েছে');
-  $('wd-amt').value='';renderWallet();
-}
-
-/* ---------- PROFILE ---------- */
-function renderProfile(){
-  const u=session();const user=users().find(x=>x.user===u);if(!user)return;
-  $('pf-avatar').textContent=u[0].toUpperCase();
-  $('pf-name').textContent=u;
-  $('pf-meta').innerHTML='📱 '+user.phone+'<br>রেফারেল: '+user.ref+' · যোগদান: '+user.reg;
-}
-function changePass(){
-  const u=session(),p1=$('np1').value,p2=$('np2').value;
-  if(p1.length<4)return toast('পাসওয়ার্ড ৪+ অক্ষরের হতে হবে');
-  if(p1!==p2)return toast('পাসওয়ার্ড মিলছে না');
-  const us=users();us.find(v=>v.user===u).pass=p1;saveUsers(us);
-  toast('🔒 পাসওয়ার্ড পরিবর্তন হয়েছে');
-  $('np1').value='';$('np2').value='';
-}
-
-/* ---------- AVIATOR ---------- */
-let av={run:false,mult:1,crash:0,pts:[],amt:0,timer:null};
-const avC=$('avCanvas'),avX=avC.getContext('2d');
-function avReset(){
-  if(av.timer)clearInterval(av.timer);
-  av={run:false,mult:1,crash:0,pts:[],amt:0,timer:null};
-  $('av-mult').textContent='1.00x';$('av-mult').style.color='var(--green)';
-  $('av-status').textContent='বাজি রাখুন এবং ফ্লাই শুরু করুন';
-  $('av-btn').textContent='✈️ ফ্লাই শুরু করুন';
-  avDraw();
-}
-function avAction(){
-  const u=session();if(!u)return toast('লগইন করুন');
-  if(!av.run){
-    const amt=parseInt($('av-amt').value,10);
-    if(!amt||amt<10)return toast('সর্বনিম্ন বাজি ৳১০');
-    if(amt>wallet(u))return toast('ব্যালেন্স অপর্যাপ্ত');
-    setWallet(u,wallet(u)-amt);
-    $('bal-top').textContent=wallet(u).toLocaleString('bn-BD');
-    av.amt=amt;av.crash=1+Math.random()*8;av.mult=1;av.pts=[];av.run=true;
-    $('av-btn').textContent='💰 ক্যাশ আউট ('+amt+' টাকা)';
-    $('av-status').textContent='✈️ ফ্লাই চলছে…';
-    $('av-mult').style.color='var(--green)';
-    av.timer=setInterval(()=>{
-      av.mult+=0.02;
-      if(av.mult>=av.crash){
-        clearInterval(av.timer);av.timer=null;av.run=false;
-        $('av-mult').textContent=av.mult.toFixed(2)+'x';$('av-mult').style.color='var(--red)';
-        $('av-status').textContent='💥 ক্র্যাশ @ '+av.mult.toFixed(2)+'x — বাজি হেরেছে';
-        $('av-btn').textContent='✈️ আবার খেলুন';
-        avDraw();return;
-      }
-      $('av-mult').textContent=av.mult.toFixed(2)+'x';
-      av.pts.push({t:av.pts.length,m:av.mult});
-      avDraw();
-    },80);
-    avDraw();
-  }else{
-    clearInterval(av.timer);av.timer=null;av.run=false;
-    const w=Math.floor(av.amt*av.mult);
-    setWallet(u,wallet(u)+w);
-    addTx(u,{type:'win',amount:w,note:'Aviator ক্যাশ আউট @ '+av.mult.toFixed(2)+'x'});
-    $('bal-top').textContent=wallet(u).toLocaleString('bn-BD');
-    $('av-mult').textContent=av.mult.toFixed(2)+'x';$('av-mult').style.color='var(--gold)';
-    $('av-status').textContent='✅ ক্যাশ আউট — জিতেছেন ৳'+w.toLocaleString('bn-BD');
-    $('av-btn').textContent='✈️ আবার খেলুন';
-    confetti();
-    avDraw();
-  }
-}
-function avDraw(){
-  const w=avC.width=avC.offsetWidth,h=avC.height=260;
-  avX.fillStyle='rgba(8,12,24,.9)';avX.fillRect(0,0,w,h);
-  avX.strokeStyle='rgba(255,255,255,.06)';avX.lineWidth=1;
-  for(let y=0;y<h;y+=26){avX.beginPath();avX.moveTo(0,y);avX.lineTo(w,y);avX.stroke();}
-  for(let x=0;x<w;x+=46){avX.beginPath();avX.moveTo(x,0);avX.lineTo(x,h);avX.stroke();}
-  avX.fillStyle='rgba(255,255,255,.05)';
-  for(let i=0;i<12;i++){const sx=(i*97)%w,sy=(i*53)%h;avX.beginPath();avX.arc(sx,sy,1.2,0,7);avX.fill();}
-  const maxM=Math.max(2,av.crash+0.5),maxT=Math.max(50,av.pts.length);
-  if(av.pts.length>1){
-    avX.strokeStyle='#2ecc71';avX.lineWidth=3;avX.beginPath();
-    av.pts.forEach((p,i)=>{const x=i/maxT*w,y=h-(p.m/maxM)*h;if(i===0)avX.moveTo(x,y);else avX.lineTo(x,y);});
-    avX.stroke();
-    avX.strokeStyle='rgba(46,204,113,.25)';avX.lineWidth=8;avX.stroke();
-  }
-  const cx=(av.pts.length/maxT)*w,cy=h-(av.mult/maxM)*h;
-  if(av.run&&av.pts.length){
-    avX.beginPath();avX.arc(cx,cy,6,0,7);avX.fillStyle='#fff';avX.fill();
-    avX.beginPath();avX.arc(cx,cy,11,0,7);avX.strokeStyle='rgba(46,204,113,.6)';avX.lineWidth=2;avX.stroke();
-  }
-  if(!av.run&&av.crash){
-    avX.strokeStyle='#ff4d5a';avX.lineWidth=2;
-    avX.beginPath();avX.moveTo(0,cy);avX.lineTo(w,cy);avX.stroke();
-    avX.beginPath();avX.arc(cx,cy,6,0,7);avX.fillStyle='#ff4d5a';avX.fill();
-  }
-}
-function setAvChip(v){$('av-amt').value=v;}
-
-/* ---------- MODAL ---------- */
-function modal(name){$('m-title').textContent=name;$('m-bg').classList.add('show');}
-function closeModal(){$('m-bg').classList.remove('show');}
-
-/* ---------- TICK ---------- */
-setInterval(()=>{
-  ensurePeriod();renderPeriod();
-  const u=session();
-  if(u){
-    $('bal-top').textContent=wallet(u).toLocaleString('bn-BD');
-    const b2=$('bal-top2');if(b2)b2.textContent=wallet(u).toLocaleString('bn-BD');
-    renderLastResult();renderHist();renderBets();
-  }
-},500);
-
-/* ---------- INIT ---------- */
-$('li-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-$('rg-pass2').addEventListener('keydown',e=>{if(e.key==='Enter')doRegister();});
-$('m-bg').addEventListener('click',e=>{if(e.target===$('m-bg'))closeModal();});
-buildNumpad();buildGrid();
-ensurePeriod();savePState();
-if(session()&&users().some(x=>x.user===session()))enterApp();else show('s-login');
-</script>
-</body>
-</html>
+  <!-- গেম লবি -->
+  <div class="lobby-title"><span>🎮</span><span class="lt">গেম লবি</span></div>
+  <div class="tabs" id="homeTabs">
+    <button class="tab on" onclick="setTab(this,'সব')">সব</button>
+    <button class="tab" onclick="setTab(this,'জনপ্রিয়')">জনপ্রিয়</button>
+    <button class="tab" onclick="setTab(this,'স্লট')">স্লট</button>
+    <button class="tab" onclick="setTab(this,'লাইভ')">লাইভ</button>
+    <button class="tab" onclick
