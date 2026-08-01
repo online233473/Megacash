@@ -46,13 +46,18 @@ input{font-family:inherit;border:none;outline:none}
 .logo .cash{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:logoGlow 2.6s ease-in-out infinite}
 @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(255,170,40,.45))}50%{filter:drop-shadow(0 0 18px rgba(255,170,40,.9))}}
 
-/* ===== auth ===== */
-.auth{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:26px 18px}
-.auth.active{display:flex}
+/* ===== auth (login/register with background scene) ===== */
+.auth{display:none;position:relative;min-height:100vh;overflow:hidden;padding:0}
+.auth.active{display:block}
+.auth-bg{position:absolute;inset:0;z-index:0}
+.auth-bg .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.auth-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.auth-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,8,18,.28) 0%,rgba(5,8,18,.5) 45%,rgba(5,8,18,.85) 100%)}
+.auth-inner{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px}
 .auth-logo{font-size:46px;animation:bounceIn .7s cubic-bezier(.34,1.56,.64,1)}
-.auth-tag{color:var(--mut);font-size:13px;margin:12px 0 26px;letter-spacing:.4px;animation:fadeUp .8s .15s both}
+.auth-tag{color:#dfe4f5;font-size:13px;margin:12px 0 26px;letter-spacing:.4px;text-shadow:0 2px 10px rgba(0,0,0,.6);animation:fadeUp .8s .15s both}
 @keyframes bounceIn{0%{opacity:0;transform:scale(.4)}60%{transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
-.auth-card{width:100%;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);animation:fadeUp .7s .3s both}
+.auth-card{width:100%;max-width:400px;background:rgba(13,19,38,.9);border:1px solid rgba(140,155,220,.3);border-radius:22px;padding:30px 24px;box-shadow:var(--shadow);backdrop-filter:blur(14px);animation:fadeUp .7s .3s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 .auth-card h2{font-size:21px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
 .auth-card .sub{color:var(--mut);font-size:13px;margin-bottom:20px}
@@ -69,6 +74,21 @@ input{font-family:inherit;border:none;outline:none}
 .auth-foot{text-align:center;font-size:13px;color:var(--mut);margin-top:18px}
 .badge-new{display:inline-block;background:linear-gradient(135deg,#ff4d5a,#ff9f1c);font-size:10px;font-weight:900;color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+/* ===== login scene animations ===== */
+.tw1,.tw2,.tw3,.tw4,.tw5{animation:twinkle 2.6s ease-in-out infinite}
+.tw2{animation-delay:.5s}.tw3{animation-delay:1s}.tw4{animation-delay:1.5s}.tw5{animation-delay:2s}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
+.coin{transform-box:fill-box;transform-origin:center;animation:coinFloat 7s ease-in-out infinite}
+.c2{animation-delay:-2.3s}.c3{animation-delay:-4.1s}.c4{animation-delay:-5.6s}
+@keyframes coinFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-30px) rotate(10deg)}}
+.cardA,.cardB{transform-box:fill-box;transform-origin:center;animation:cardSway 9s ease-in-out infinite}
+.cardB{animation-delay:-4.5s}
+@keyframes cardSway{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(7deg) translateY(-20px)}}
+.dice{transform-box:fill-box;transform-origin:center;animation:diceBob 6s ease-in-out infinite}
+@keyframes diceBob{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(20deg) translateY(-14px)}}
+.ringRot{transform-box:fill-box;transform-origin:center;animation:ringSpin 16s linear infinite}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
 
 /* ===== header ===== */
 header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:10px;animation:fadeDown .5s both}
@@ -196,32 +216,211 @@ nav button.on::before{content:'';position:absolute;top:0;width:34px;height:3px;b
 
 <!-- ============ LOGIN ============ -->
 <div class="screen auth active" id="s-login">
-  <div class="logo auth-logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
-  <p class="auth-tag">⚡ বাংলাদেশের #১ গেমিং প্ল্যাটফর্ম</p>
-  <div class="auth-card">
-    <h2>🔐 লগইন করুন</h2>
-    <p class="sub">আপনার একাউন্টে প্রবেশ করুন</p>
-    <input class="inp" id="li-user" placeholder="ইউজারনেম" autocomplete="username">
-    <input class="inp" id="li-pass" type="password" placeholder="পাসওয়ার্ড" autocomplete="current-password">
-    <button class="btn" onclick="doLogin()">লগইন করুন</button>
-    <p class="auth-foot">একাউন্ট নেই? <span class="link" onclick="show('s-register')">নতুন একাউন্ট খুলুন <span class="badge-new">NEW</span></span></p>
+  <!-- ব্যাকগ্রাউন্ড ছবি (SVG দৃশ্য) — নিজের ছবি দিতে চাইলে নিচের <svg> ব্লকের বদলে <img class="scene" src="আপনার-ছবির-URL"> বসান -->
+  <div class="auth-bg">
+    <svg class="scene" viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#070b1c"/>
+          <stop offset=".5" stop-color="#1a1145"/>
+          <stop offset="1" stop-color="#3f0f2e"/>
+        </linearGradient>
+        <radialGradient id="glowP">
+          <stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glowG">
+          <stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#ffd76e" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="coinG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe9a8"/>
+          <stop offset=".5" stop-color="#f6c453"/>
+          <stop offset="1" stop-color="#d99a1b"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="1200" fill="url(#sky)"/>
+      <circle cx="160" cy="220" r="280" fill="url(#glowP)"/>
+      <circle cx="660" cy="400" r="240" fill="url(#glowG)"/>
+      <g fill="#fff">
+        <circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/>
+        <circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/>
+        <circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/>
+        <circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/>
+        <circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/>
+      </g>
+      <g transform="translate(150,390)"><g class="coin c1">
+        <circle cx="0" cy="0" r="36" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.5"/>
+        <circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/>
+        <text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(655,450)"><g class="coin c2">
+        <circle cx="0" cy="0" r="28" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/>
+        <circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/>
+        <text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(115,720)"><g class="coin c3">
+        <circle cx="0" cy="0" r="24" fill="url(#coinG)" stroke="#b57b12" stroke-width="2"/>
+        <circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/>
+        <text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(712,780)"><g class="coin c4">
+        <circle cx="0" cy="0" r="32" fill="url(#coinG)" stroke="#b57b12" stroke-width="2.4"/>
+        <circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/>
+        <text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(556,620)"><g class="cardA">
+        <rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
+        <text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text>
+        <text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text>
+      </g></g>
+      <g transform="translate(130,770)"><g class="cardB">
+        <rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
+        <text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text>
+        <text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text>
+      </g></g>
+      <g transform="translate(662,862)"><g class="dice">
+        <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
+        <circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/>
+      </g></g>
+      <g transform="translate(205,880)"><g class="dice">
+        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
+        <circle cx="0" cy="0" r="4.5" fill="#22263b"/>
+      </g></g>
+      <circle cx="400" cy="300" r="165" fill="none" stroke="#9b5cf6" stroke-width="2.4" opacity=".45" stroke-dasharray="10 16" class="ringRot"/>
+      <path d="M0 1200 L0 985 h55 v35 h40 v-60 h60 v60 h50 v-25 h55 v25 h45 v-80 h60 v80 h50 v-45 h60 v45 h40 v-65 h55 v65 h50 v-30 h55 v30 h45 v-95 h60 v95 h50 v-50 h55 v50 h40 v-70 h60 v70 h55 v-40 h60 v40 h30 V1200 Z" fill="#0a0d1e" opacity=".95"/>
+      <g fill="#f6c453" opacity=".5">
+        <rect x="110" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="128" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="320" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="338" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="525" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="543" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="735" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="753" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="430" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="615" y="1010" width="8" height="8" rx="1.5"/>
+      </g>
+    </svg>
+    <div class="auth-shade"></div>
+  </div>
+  <div class="auth-inner">
+    <div class="logo auth-logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
+    <p class="auth-tag">⚡ বাংলাদেশের #১ গেমিং প্ল্যাটফর্ম</p>
+    <div class="auth-card">
+      <h2>🔐 লগইন করুন</h2>
+      <p class="sub">আপনার একাউন্টে প্রবেশ করুন</p>
+      <input class="inp" id="li-user" placeholder="ইউজারনেম" autocomplete="username">
+      <input class="inp" id="li-pass" type="password" placeholder="পাসওয়ার্ড" autocomplete="current-password">
+      <button class="btn" onclick="doLogin()">লগইন করুন</button>
+      <p class="auth-foot">একাউন্ট নেই? <span class="link" onclick="show('s-register')">নতুন একাউন্ট খুলুন <span class="badge-new">NEW</span></span></p>
+    </div>
   </div>
 </div>
 
 <!-- ============ REGISTER ============ -->
 <div class="screen auth" id="s-register">
-  <div class="logo auth-logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
-  <p class="auth-tag">🎁 রেজিস্ট্রেশন করলেই ৳১০০০ বোনাস</p>
-  <div class="auth-card">
-    <h2>✨ নতুন একাউন্ট</h2>
-    <p class="sub">মাত্র ১ মিনিটে একাউন্ট খুলুন</p>
-    <input class="inp" id="rg-user" placeholder="ইউজারনেম (৪+ অক্ষর)">
-    <input class="inp" id="rg-pass" type="password" placeholder="পাসওয়ার্ড">
-    <input class="inp" id="rg-pass2" type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন">
-    <input class="inp" id="rg-phone" type="tel" inputmode="numeric" placeholder="মোবাইল নম্বর (01XXXXXXXXX)">
-    <input class="inp" id="rg-ref" placeholder="রেফারেল কোড (ঐচ্ছিক)">
-    <button class="btn" onclick="doRegister()">🎉 একাউন্ট খুলুন</button>
-    <p class="auth-foot">ইতিমধ্যে একাউন্ট আছে? <span class="link" onclick="show('s-login')">লগইন করুন</span></p>
+  <div class="auth-bg">
+    <svg class="scene" viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#070b1c"/>
+          <stop offset=".5" stop-color="#1a1145"/>
+          <stop offset="1" stop-color="#3f0f2e"/>
+        </linearGradient>
+        <radialGradient id="glowP2">
+          <stop offset="0" stop-color="#9b5cf6" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#9b5cf6" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glowG2">
+          <stop offset="0" stop-color="#ffd76e" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#ffd76e" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="coinG2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe9a8"/>
+          <stop offset=".5" stop-color="#f6c453"/>
+          <stop offset="1" stop-color="#d99a1b"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="1200" fill="url(#sky2)"/>
+      <circle cx="160" cy="220" r="280" fill="url(#glowP2)"/>
+      <circle cx="660" cy="400" r="240" fill="url(#glowG2)"/>
+      <g fill="#fff">
+        <circle class="tw1" cx="110" cy="140" r="2.4" opacity=".9"/>
+        <circle class="tw2" cx="430" cy="90" r="1.8" opacity=".8"/>
+        <circle class="tw3" cx="700" cy="170" r="2.6" opacity=".9"/>
+        <circle class="tw4" cx="560" cy="540" r="1.8" opacity=".7"/>
+        <circle class="tw5" cx="240" cy="500" r="2.2" opacity=".8"/>
+      </g>
+      <g transform="translate(150,390)"><g class="coin c1">
+        <circle cx="0" cy="0" r="36" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.5"/>
+        <circle cx="0" cy="0" r="25" fill="none" stroke="#ffe9a8" stroke-width="1.6" opacity=".85"/>
+        <text x="0" y="12" font-size="30" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(655,450)"><g class="coin c2">
+        <circle cx="0" cy="0" r="28" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/>
+        <circle cx="0" cy="0" r="19" fill="none" stroke="#ffe9a8" stroke-width="1.4" opacity=".85"/>
+        <text x="0" y="9" font-size="22" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(115,720)"><g class="coin c3">
+        <circle cx="0" cy="0" r="24" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2"/>
+        <circle cx="0" cy="0" r="16" fill="none" stroke="#ffe9a8" stroke-width="1.3" opacity=".85"/>
+        <text x="0" y="8" font-size="18" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(712,780)"><g class="coin c4">
+        <circle cx="0" cy="0" r="32" fill="url(#coinG2)" stroke="#b57b12" stroke-width="2.4"/>
+        <circle cx="0" cy="0" r="22" fill="none" stroke="#ffe9a8" stroke-width="1.5" opacity=".85"/>
+        <text x="0" y="11" font-size="26" font-weight="900" fill="#8a5a08" text-anchor="middle" font-family="sans-serif">৳</text>
+      </g></g>
+      <g transform="translate(556,620)"><g class="cardA">
+        <rect x="-42" y="-60" width="84" height="120" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
+        <text x="-42" y="-34" font-size="20" font-weight="900" fill="#e0314f" font-family="sans-serif">A</text>
+        <text x="0" y="14" font-size="42" fill="#e0314f" text-anchor="middle" font-family="sans-serif">♥</text>
+      </g></g>
+      <g transform="translate(130,770)"><g class="cardB">
+        <rect x="-36" y="-52" width="72" height="104" rx="10" fill="#f7f8fc" stroke="#d7daf0" stroke-width="1.6"/>
+        <text x="-36" y="-28" font-size="18" font-weight="900" fill="#22263b" font-family="sans-serif">K</text>
+        <text x="0" y="12" font-size="36" fill="#22263b" text-anchor="middle" font-family="sans-serif">♠</text>
+      </g></g>
+      <g transform="translate(662,862)"><g class="dice">
+        <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
+        <circle cx="-7" cy="-7" r="4.5" fill="#22263b"/><circle cx="7" cy="7" r="4.5" fill="#22263b"/>
+      </g></g>
+      <g transform="translate(205,880)"><g class="dice">
+        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="#fff" stroke="#d7daf0" stroke-width="1.6"/>
+        <circle cx="0" cy="0" r="4.5" fill="#22263b"/>
+      </g></g>
+      <circle cx="400" cy="300" r="165" fill="none" stroke="#9b5cf6" stroke-width="2.4" opacity=".45" stroke-dasharray="10 16" class="ringRot"/>
+      <path d="M0 1200 L0 985 h55 v35 h40 v-60 h60 v60 h50 v-25 h55 v25 h45 v-80 h60 v80 h50 v-45 h60 v45 h40 v-65 h55 v65 h50 v-30 h55 v30 h45 v-95 h60 v95 h50 v-50 h55 v50 h40 v-70 h60 v70 h55 v-40 h60 v40 h30 V1200 Z" fill="#0a0d1e" opacity=".95"/>
+      <g fill="#f6c453" opacity=".5">
+        <rect x="110" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="128" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="320" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="338" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="525" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="543" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="735" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="753" y="985" width="8" height="8" rx="1.5"/>
+        <rect x="430" y="1010" width="8" height="8" rx="1.5"/>
+        <rect x="615" y="1010" width="8" height="8" rx="1.5"/>
+      </g>
+    </svg>
+    <div class="auth-shade"></div>
+  </div>
+  <div class="auth-inner">
+    <div class="logo auth-logo"><span class="mega">Mega</span><span class="cash">Cash</span></div>
+    <p class="auth-tag">🎁 রেজিস্ট্রেশন করলেই ৳১০০০ বোনাস</p>
+    <div class="auth-card">
+      <h2>✨ নতুন একাউন্ট</h2>
+      <p class="sub">মাত্র ১ মিনিটে একাউন্ট খুলুন</p>
+      <input class="inp" id="rg-user" placeholder="ইউজারনেম (৪+ অক্ষর)">
+      <input class="inp" id="rg-pass" type="password" placeholder="পাসওয়ার্ড">
+      <input class="inp" id="rg-pass2" type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন">
+      <input class="inp" id="rg-phone" type="tel" inputmode="numeric" placeholder="মোবাইল নম্বর (01XXXXXXXXX)">
+      <input class="inp" id="rg-ref" placeholder="রেফারেল কোড (ঐচ্ছিক)">
+      <button class="btn" onclick="doRegister()">🎉 একাউন্ট খুলুন</button>
+      <p class="auth-foot">ইতিমধ্যে একাউন্ট আছে? <span class="link" onclick="show('s-login')">লগইন করুন</span></p>
+    </div>
   </div>
 </div>
 
@@ -480,7 +679,7 @@ function enterApp(){
   renderHome();show('s-home');
 }
 
-/* ---------- CONFetti ---------- */
+/* ---------- CONFETTI ---------- */
 function confetti(){
   const wrap=$('confetti-wrap');const colors=['#f6c453','#ff4d5a','#2ecc71','#9b5cf6','#ff9f1c','#4dd7ff'];
   for(let i=0;i<70;i++){
