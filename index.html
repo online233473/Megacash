@@ -46,16 +46,41 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 @keyframes tI{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:none}}
 @keyframes tO{to{opacity:0;transform:translateX(100px)}}
 
-.ld{position:fixed;inset:0;z-index:999999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+/* ===== লোডিং স্ক্রিন — ব্যাকগ্রাউন্ড ছবি যোগ ===== */
+.ld{position:fixed;inset:0;z-index:999999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;overflow:hidden}
 .ld.go{opacity:0;visibility:hidden}
-.ld h1{font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;letter-spacing:4px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
-.ld p{color:var(--fg3);font-size:12px;letter-spacing:6px;text-transform:uppercase;margin-bottom:32px}
-.ld-bar{width:200px;height:2px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.ld-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://cdn.prod.website-files.com/6564ba01d62e911ee731b8fb/65e71b0aeeae017e7eb22385_Mega_Cash_The_Gold_680x846.webp') center center / cover no-repeat;
+  opacity:.18;filter:blur(2px) brightness(.8);
+  animation:ldBgPulse 4s ease-in-out infinite alternate;
+}
+@keyframes ldBgPulse{0%{opacity:.15;transform:scale(1.05)}100%{opacity:.22;transform:scale(1.1)}}
+.ld::after{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse at center,rgba(8,8,15,.3) 0%,rgba(8,8,15,.85) 70%,rgba(8,8,15,.97) 100%);
+  pointer-events:none;
+}
+.ld h1{font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;letter-spacing:4px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;position:relative;z-index:2;text-shadow:none}
+.ld p{color:var(--fg3);font-size:12px;letter-spacing:6px;text-transform:uppercase;margin-bottom:32px;position:relative;z-index:2}
+.ld-bar{width:200px;height:2px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative;z-index:2}
 .ld-bar i{display:block;height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .2s}
 
-/* অথ পেজ */
-.aw{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.ab{width:100%;max-width:430px}
+/* ===== অথ পেজ — ব্যাকগ্রাউন্ড ছবি যোগ ===== */
+.aw{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+.aw-bg{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url('https://cdn.prod.website-files.com/6564ba01d62e911ee731b8fb/65e71b0aeeae017e7eb22385_Mega_Cash_The_Gold_680x846.webp') center center / cover no-repeat;
+  opacity:.12;filter:blur(1px) brightness(.7);
+  animation:awBgFloat 12s ease-in-out infinite alternate;
+}
+@keyframes awBgFloat{0%{opacity:.10;transform:scale(1.03)}50%{opacity:.16;transform:scale(1.06)}100%{opacity:.12;transform:scale(1.04)}}
+.aw::after{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse at center,rgba(8,8,15,.2) 0%,rgba(8,8,15,.75) 55%,rgba(8,8,15,.95) 100%);
+  pointer-events:none;
+}
+.ab{width:100%;max-width:430px;position:relative;z-index:2}
 .abr{text-align:center;margin-bottom:36px}
 .abr .ic{width:72px;height:72px;margin:0 auto 16px;border-radius:18px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--bg);box-shadow:0 0 50px var(--glow);animation:ib 3.5s ease-in-out infinite}
 @keyframes ib{0%,100%{box-shadow:0 0 50px var(--glow)}50%{box-shadow:0 0 80px var(--glow),0 0 120px var(--glow2)}}
@@ -91,7 +116,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sb button span{font-size:11px;font-family:inherit}
 .sb button:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ড্যাশবোর্ড */
 .dash{display:none;min-height:100vh;padding-bottom:80px}
 .dash.active{display:block}
 
@@ -145,18 +169,11 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .gtab.on{color:var(--gold);border-bottom-color:var(--gold)}
 .gtab:hover{color:var(--fg)}
 
-/* গেম গ্রিড */
 .ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 16px}
 .gc{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .35s;position:relative;background:var(--bg3);border:1px solid var(--bdr)}
 .gc:hover{transform:translateY(-4px) scale(1.02);border-color:var(--bdr-h);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px var(--glow)}
 .gc.slots-link{position:relative}
-.gc.slots-link::after{
-  content:'\f35d';font-family:'Font Awesome 6 Free';font-weight:900;
-  position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
-  background:rgba(0,200,83,.85);color:#000;font-size:10px;
-  display:flex;align-items:center;justify-content:center;z-index:2;
-  box-shadow:0 2px 10px rgba(0,230,118,.3);
-}
+.gc.slots-link::after{content:'\f35d';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:rgba(0,200,83,.85);color:#000;font-size:10px;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 10px rgba(0,230,118,.3)}
 .gc-img{width:100%;aspect-ratio:1/1;overflow:hidden;position:relative}
 .gc-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gc:hover .gc-img img{transform:scale(1.1)}
@@ -166,17 +183,10 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .gc-badge.top{background:rgba(255,215,0,.85);color:#000}
 .gc-name{padding:8px 8px 10px;text-align:center;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* স্লটস ট্যাব হেডিং নোট */
-.slots-note{
-  margin:0 16px 12px;padding:12px 16px;
-  background:linear-gradient(135deg,rgba(0,230,118,.06),rgba(0,200,255,.04));
-  border:1px solid rgba(0,230,118,.12);border-radius:var(--rs);
-  font-size:12px;color:var(--fg2);display:flex;align-items:center;gap:8px;
-}
+.slots-note{margin:0 16px 12px;padding:12px 16px;background:linear-gradient(135deg,rgba(0,230,118,.06),rgba(0,200,255,.04));border:1px solid rgba(0,230,118,.12);border-radius:var(--rs);font-size:12px;color:var(--fg2);display:flex;align-items:center;gap:8px}
 .slots-note i{color:var(--green);font-size:14px}
 .slots-note strong{color:var(--green)}
 
-/* বটম নেভ */
 .bnav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,15,.95);backdrop-filter:blur(24px);border-top:1px solid var(--bdr);display:flex;padding:6px 0 env(safe-area-inset-bottom,6px)}
 .bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0;cursor:pointer;transition:all .3s;border:none;background:none;font-family:inherit}
 .bnav-item i{font-size:18px;color:var(--fg3);transition:all .3s}
@@ -189,7 +199,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sec-title{padding:16px 16px 12px;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
 .sec-title i{color:var(--gold);font-size:14px}
 
-/* খেলাধুলা */
 .sport-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px 16px}
 .sp-cat{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:16px 8px;text-align:center;cursor:pointer;transition:all .3s}
 .sp-cat:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
@@ -210,7 +219,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .sp-od small{display:block;font-size:10px;color:var(--fg3);margin-bottom:2px}
 .sp-od strong{font-size:14px;font-weight:700;color:var(--gold)}
 
-/* প্রমোশন */
 .promo-list{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
 .promo-item{border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);cursor:pointer;transition:all .3s}
 .promo-item:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
@@ -220,7 +228,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .promo-item .pi-body p{font-size:12px;color:var(--fg3)}
 .promo-item .pi-body .pi-tag{display:inline-block;margin-top:8px;padding:3px 10px;background:rgba(255,215,0,.1);color:var(--gold);border-radius:10px;font-size:10px;font-weight:600}
 
-/* পেমেন্ট */
 .pay-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px 16px}
 .pay-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:20px 14px;text-align:center;cursor:pointer;transition:all .3s}
 .pay-card:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
@@ -242,7 +249,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .pm-item .pm-info p{font-size:11px;color:var(--fg3)}
 .pm-item .pm-arrow{color:var(--fg3);font-size:12px}
 
-/* আমার */
 .profile-card{margin:0 16px 16px;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,140,0,.03));border:1px solid rgba(255,215,0,.12);border-radius:var(--r);padding:24px;text-align:center}
 .profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:var(--bg);margin:0 auto 12px;box-shadow:0 0 30px var(--glow)}
 .profile-card h3{font-size:18px;font-weight:700;margin-bottom:2px}
@@ -259,7 +265,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .menu-item.dng{color:var(--red)}
 .menu-item.dng i{color:var(--red)}
 
-/* গেম মোডাল */
 .gm{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center}
 .gm.show{display:flex;animation:pgI .25s ease}
 .gm-sheet{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;animation:shUp .35s cubic-bezier(.22,1,.36,1)}
@@ -277,7 +282,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .b2{flex:1;padding:14px;border:1.5px solid var(--bdr);border-radius:var(--rs);background:transparent;color:var(--fg);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .3s}
 .b2:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ডিপোজিট মোডাল */
 .dep-modal{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .dep-modal.show{display:flex;animation:pgI .25s ease}
 .dep-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);width:100%;max-width:420px;padding:28px;animation:shUp .35s cubic-bezier(.22,1,.36,1);position:relative}
@@ -303,44 +307,54 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 </head>
 <body>
 
-<div class="ld" id="loader"><h1>MEGACASH</h1><p>Gaming Platform</p><div class="ld-bar"><i id="lbar"></i></div></div>
+<!-- ===== লোডিং — ব্যাকগ্রাউন্ড ছবি যোগ ===== -->
+<div class="ld" id="loader">
+  <div class="ld-bg"></div>
+  <h1>MEGACASH</h1>
+  <p>Gaming Platform</p>
+  <div class="ld-bar"><i id="lbar"></i></div>
+</div>
+
 <div class="bg-layer"><div class="m"></div><div class="m"></div><div class="m"></div></div>
 <canvas id="ptc"></canvas>
 <div class="tb" id="tbox"></div>
 
-<!-- অথ পেজ -->
+<!-- ===== অথ পেজ — ব্যাকগ্রাউন্ড ছবি যোগ ===== -->
 <div class="page active" id="authPage">
-  <div class="aw"><div class="ab">
-    <div class="abr">
-      <div class="ic"><i class="fas fa-coins"></i></div>
-      <h1>MEGACASH</h1>
-      <p>প্রিমিয়াম গেমিং প্ল্যাটফর্ম</p>
+  <div class="aw">
+    <div class="aw-bg"></div>
+    <div class="ab">
+      <div class="abr">
+        <div class="ic"><i class="fas fa-coins"></i></div>
+        <h1>MEGACASH</h1>
+        <p>প্রিমিয়াম গেমিং প্ল্যাটফর্ম</p>
+      </div>
+      <div class="ac">
+        <div class="at"><button class="on" onclick="swA('login')">লগইন</button><button onclick="swA('reg')">রেজিস্ট্রেশন</button></div>
+        <form class="af on" id="lF" onsubmit="doL(event)">
+          <div class="fg"><label>ইমেইল অথবা ইউজারনেম</label><div class="iw"><input type="text" id="lE" placeholder="আপনার ইমেইল লিখুন" required><i class="fas fa-envelope"></i></div></div>
+          <div class="fg"><label>পাসওয়ার্ড</label><div class="iw"><input type="password" id="lP" placeholder="পাসওয়ার্ড লিখুন" required><i class="fas fa-lock"></i></div></div>
+          <div class="fe"><label><input type="checkbox" checked> মনে রাখুন</label><a href="#" onclick="toast('পাসওয়ার্ড রিসেট লিংক পাঠানো হয়েছে','in');return false">ভুলে গেছেন?</a></div>
+          <button type="submit" class="b1" id="lBtn"><span class="bt">লগইন করুন</span><div class="sp"></div></button>
+          <div class="dv">অথবা</div>
+          <div class="sb">
+            <button type="button" onclick="toast('Google লগইন শীঘ্রই আসছে','in')"><i class="fab fa-google"></i><span>Google</span></button>
+            <button type="button" onclick="toast('Facebook লগইন শীঘ্রই আসছে','in')"><i class="fab fa-facebook-f"></i><span>Facebook</span></button>
+            <button type="button" onclick="toast('GitHub লগইন শীঘ্রই আসছে','in')"><i class="fab fa-github"></i><span>GitHub</span></button>
+          </div>
+        </form>
+        <form class="af" id="rF" onsubmit="doR(event)">
+          <div class="fg"><label>পুরো নাম</label><div class="iw"><input type="text" id="rN" placeholder="আপনার নাম" required><i class="fas fa-user"></i></div></div>
+          <div class="fg"><label>ইমেইল</label><div class="iw"><input type="email" id="rE" placeholder="ইমেইল লিখুন" required><i class="fas fa-envelope"></i></div></div>
+          <div class="fg"><label>ইউজারনেম</label><div class="iw"><input type="text" id="rU" placeholder="ইউজারনেম" required><i class="fas fa-at"></i></div></div>
+          <div class="fg"><label>পাসওয়ার্ড</label><div class="iw"><input type="password" id="rP" placeholder="কমপক্ষে ৬ অক্ষর" required minlength="6"><i class="fas fa-lock"></i></div></div>
+          <div class="fg"><label>পাসওয়ার্ড নিশ্চিত</label><div class="iw"><input type="password" id="rPC" placeholder="আবার লিখুন" required><i class="fas fa-shield-halved"></i></div></div>
+          <div class="fe"><label><input type="checkbox" id="rT" required> <a href="#" style="color:var(--gold)" onclick="return false">শর্তাবলী</a> মেনে নিচ্ছি</label></div>
+          <button type="submit" class="b1" id="rBtn"><span class="bt">অ্যাকাউন্ট তৈরি করুন</span><div class="sp"></div></button>
+        </form>
+      </div>
     </div>
-    <div class="ac">
-      <div class="at"><button class="on" onclick="swA('login')">লগইন</button><button onclick="swA('reg')">রেজিস্ট্রেশন</button></div>
-      <form class="af on" id="lF" onsubmit="doL(event)">
-        <div class="fg"><label>ইমেইল অথবা ইউজারনেম</label><div class="iw"><input type="text" id="lE" placeholder="আপনার ইমেইল লিখুন" required><i class="fas fa-envelope"></i></div></div>
-        <div class="fg"><label>পাসওয়ার্ড</label><div class="iw"><input type="password" id="lP" placeholder="পাসওয়ার্ড লিখুন" required><i class="fas fa-lock"></i></div></div>
-        <div class="fe"><label><input type="checkbox" checked> মনে রাখুন</label><a href="#" onclick="toast('পাসওয়ার্ড রিসেট লিংক পাঠানো হয়েছে','in');return false">ভুলে গেছেন?</a></div>
-        <button type="submit" class="b1" id="lBtn"><span class="bt">লগইন করুন</span><div class="sp"></div></button>
-        <div class="dv">অথবা</div>
-        <div class="sb">
-          <button type="button" onclick="toast('Google লগইন শীঘ্রই আসছে','in')"><i class="fab fa-google"></i><span>Google</span></button>
-          <button type="button" onclick="toast('Facebook লগইন শীঘ্রই আসছে','in')"><i class="fab fa-facebook-f"></i><span>Facebook</span></button>
-          <button type="button" onclick="toast('GitHub লগইন শীঘ্রই আসছে','in')"><i class="fab fa-github"></i><span>GitHub</span></button>
-        </div>
-      </form>
-      <form class="af" id="rF" onsubmit="doR(event)">
-        <div class="fg"><label>পুরো নাম</label><div class="iw"><input type="text" id="rN" placeholder="আপনার নাম" required><i class="fas fa-user"></i></div></div>
-        <div class="fg"><label>ইমেইল</label><div class="iw"><input type="email" id="rE" placeholder="ইমেইল লিখুন" required><i class="fas fa-envelope"></i></div></div>
-        <div class="fg"><label>ইউজারনেম</label><div class="iw"><input type="text" id="rU" placeholder="ইউজারনেম" required><i class="fas fa-at"></i></div></div>
-        <div class="fg"><label>পাসওয়ার্ড</label><div class="iw"><input type="password" id="rP" placeholder="কমপক্ষে ৬ অক্ষর" required minlength="6"><i class="fas fa-lock"></i></div></div>
-        <div class="fg"><label>পাসওয়ার্ড নিশ্চিত</label><div class="iw"><input type="password" id="rPC" placeholder="আবার লিখুন" required><i class="fas fa-shield-halved"></i></div></div>
-        <div class="fe"><label><input type="checkbox" id="rT" required> <a href="#" style="color:var(--gold)" onclick="return false">শর্তাবলী</a> মেনে নিচ্ছি</label></div>
-        <button type="submit" class="b1" id="rBtn"><span class="bt">অ্যাকাউন্ট তৈরি করুন</span><div class="sp"></div></button>
-      </form>
-    </div>
-  </div></div>
+  </div>
 </div>
 
 <!-- ড্যাশবোর্ড -->
@@ -362,8 +376,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
       </div>
     </div>
   </div>
-
-  <!-- হোম -->
   <div class="sec-view active" id="secHome">
     <div class="promo-slider"><div class="promo-track" id="promoTrack"></div></div>
     <div class="lucky-popup" onclick="toast('লাকি ড্র শীঘ্রই শুরু হবে!','ok')">
@@ -376,28 +388,20 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
     <div id="slotsNote" style="display:none"></div>
     <div class="ggrid" id="gGrid"></div>
   </div>
-
-  <!-- খেলাধুলা -->
   <div class="sec-view" id="secSport">
     <div class="sec-title"><i class="fas fa-futbol"></i> খেলাধুলা</div>
     <div class="sport-cats" id="spCats"></div>
     <div id="spMatches"></div>
   </div>
-
-  <!-- প্রমোশন -->
   <div class="sec-view" id="secPromo">
     <div class="sec-title"><i class="fas fa-percentage"></i> প্রমোশন</div>
     <div class="promo-list" id="promoList"></div>
   </div>
-
-  <!-- পেমেন্ট -->
   <div class="sec-view" id="secPay">
     <div class="sec-title"><i class="fas fa-wallet"></i> পেমেন্ট</div>
     <div class="pay-cards" id="payCards"></div>
     <div class="pay-methods"><div class="pm-title">পেমেন্ট মেথড</div><div class="pm-list" id="pmList"></div></div>
   </div>
-
-  <!-- আমার -->
   <div class="sec-view" id="secMy">
     <div class="profile-card">
       <div class="profile-avatar" id="pAv">M</div>
@@ -411,7 +415,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
     </div>
     <div class="menu-list" id="menuList"></div>
   </div>
-
   <div class="bnav" id="bNav">
     <button class="bnav-item on" onclick="swSec('Home',this)"><i class="fas fa-gamepad"></i><span>হোম</span></button>
     <button class="bnav-item" onclick="swSec('Sport',this)"><i class="fas fa-futbol"></i><span>খেলাধুলা</span></button>
@@ -421,7 +424,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
   </div>
 </div>
 
-<!-- গেম মোডাল -->
 <div class="gm" id="gModal">
   <div class="gm-sheet">
     <div class="gm-handle"></div>
@@ -438,7 +440,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
   </div>
 </div>
 
-<!-- ডিপোজিট মোডাল -->
 <div class="dep-modal" id="depModal">
   <div class="dep-box">
     <button class="dep-close" onclick="clDep()"><i class="fas fa-times"></i></button>
@@ -450,7 +451,6 @@ canvas#ptc{position:fixed;inset:0;z-index:0;pointer-events:none}
 </div>
 
 <script>
-/* স্লটস লিংক কনস্ট্যান্ট */
 const SLOTS_URL = 'https://play.slotomania.com/slots/';
 
 /* গেম ডেটা */
