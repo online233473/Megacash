@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!-- games/dice.html-এর ভেতরে -->
+<script>
+// আপনার মূল সাইটের localStorage থেকে ব্যালেন্স পড়ুন
+let balance = parseFloat(localStorage.getItem('mc_balance') || '0');
+
+function placeBet(amount) {
+  if (balance < amount) { alert('পর্যাপ্ত ব্যালেন্স নেই'); return; }
+  balance -= amount;
+  localStorage.setItem('mc_balance', balance);
+  updateUI();
+}
+
+function addWin(amount) {
+  balance += amount;
+  localStorage.setItem('mc_balance', balance);
+  updateUI();
+}
+</script>
 <html>
   <head>
     <title>HTML 5 Slot Machine</title>
